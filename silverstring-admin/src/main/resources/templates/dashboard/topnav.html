@@ -1,0 +1,85 @@
+<html>
+<div th:fragment="topnav" >
+<div class="topbar-main" style="background-color: #ac2925">
+    <div class="container">
+
+        <!-- Logo container-->
+        <div class="logo">
+            <a href="/" class="logo"><i class="md md-equalizer"></i> <span>Coinext 거래소 어드민관리툴</span> </a>
+        </div>
+        <!-- End Logo container-->
+
+        <div class="menu-extras">
+
+            <ul class="nav navbar-nav navbar-right pull-right">
+                <li class="dropdown">
+                    <a href="/logout" class="dropdown-toggle waves-effect waves-light">로그아웃</a>
+                </li>
+            </ul>
+
+            <div class="menu-item">
+                <!-- Mobile menu toggle-->
+                <a class="navbar-toggle">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- End mobile menu toggle-->
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="navbar-custom">
+    <div class="container">
+        <div id="navigation">
+            <!-- Navigation Menu-->
+            <ul class="navigation-menu">
+                <li class="has-submenu">
+                    <a href="/dashboard"><i class="md md-dashboard"></i>대시보드</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="/notice_manage"><i class="md md-dashboard"></i>공지사항 관리</a>
+                </li>
+
+                <li class="has-submenu">
+                        <a href="/news_manage"><i class="md md-dashboard"></i>보도자료 관리</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="/wallet_manage"><i class="fa fa-list"></i>지갑관리</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="/deposit_manage"><i class="fa fa-list"></i>KRW 입금관리</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="/withdrawal_manage"><i class="fa fa-list"></i>출금관리</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="/level_manage"><i class="fa fa-list"></i>레벨관리</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="/doc_manage"><i class="fa fa-list"></i>제출서류관리</a>
+                </li>
+
+                <!--<li class="has-submenu">
+                    <a href="/coupon_manage"><i class="md md-pages"></i>쿠폰관리</a>
+                </li>-->
+
+                <li class="has-submenu">
+                    <a href="/support_manage"><i class="fa fa-list"></i>고객지원</a>
+                </li>
+            </ul>
+            <!-- End navigation menu -->
+        </div> <!-- end #navigation -->
+    </div> <!-- end container -->
+</div>
+</div>
+</html>

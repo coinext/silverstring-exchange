@@ -1,0 +1,1 @@
+sudo ufw allow 6379/tcp

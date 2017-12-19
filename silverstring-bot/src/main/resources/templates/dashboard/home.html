@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html>
+<head th:include="./dashboard/header :: header">
+
+</head>
+
+
+<body>
+
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+    <link href="assets/dashboard/css/chartist.min.css" rel="stylesheet" type="text/css" />
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-lg-3">
+                <div class="widget-simple-chart text-right card-box">
+                    <h3 class="text-muted text-nowrap"><i class="md md-keyboard-arrow-right text-primary"></i>총 회원수</h3>
+                    <h3 id="userTotalCntId" class="text-success counter">-</h3>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="widget-simple-chart text-right card-box">
+                    <h3 class="text-muted text-nowrap"><i class="md md-keyboard-arrow-right text-primary"></i>총 KRW 거래액</h3>
+                    <h3 id="totoalKrwTotalBalId" class="text-primary counter">-</h3>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="widget-simple-chart text-right card-box">
+                    <h3 class="text-muted text-nowrap"><i class="md md-keyboard-arrow-right text-primary"></i>총 입금 대기건수</h3>
+                    <h3 id="depositWaitCntId" class="text-primary counter">-</h3>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="widget-simple-chart text-right card-box">
+                    <h3 class="text-muted text-nowrap"><i class="md md-keyboard-arrow-right text-primary"></i>총 출금 대기건수</h3>
+                    <h3 id="withdrawalWaitCntId" class="text-primary counter">-</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="card-box">
+                    <h4 class="text-dark  header-title m-t-0"><i class="md md-keyboard-arrow-right text-primary"></i>거래현황</h4>
+                    <p class="text-muted m-b-25 font-13">
+                        - 해당 가상화폐의 실시간 거래현황을 한눈에 보실수있습니다.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>화폐</th>
+                                <th>현재가</th>
+                                <th>변동률(%)</th>
+                                <th>거래량</th>
+                            </tr>
+                            </thead>
+                            <tbody id="currentCoinBodyId">
+
+                            </block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -8 -->
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card-box">
+                    <h4 class="text-dark  header-title m-t-0"><i class="md md-keyboard-arrow-right text-primary"></i>공지사항</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card-box">
+                    <h4 class="text-dark  header-title m-t-0"><i class="md md-keyboard-arrow-right text-primary"></i>보도자료</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer text-right">
+            <div th:include="./dashboard/footer :: footer"></div>
+        </footer>
+        <!-- End Footer -->
+
+    </div> <!-- end container -->
+</div>
+<!-- End wrapper -->
+<script type="text/javascript">
+</script>
+
+</body>
+</html>

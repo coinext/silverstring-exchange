@@ -1,0 +1,1992 @@
+@import "variables.less";
+@import "elements.less";
+
+/* ===========
+   Components List
+
+   - Buttons
+   - Panels
+   - Portlets
+   - Checkbox and radio
+   - Progressbars
+   - Carousel
+   - Tables
+   - Form Elements
+   - Calendar
+   - Widgets
+ =============*/
+
+/* ===========
+   Buttons
+ =============*/
+.btn {
+  border-radius: 2px;
+  padding: 6px 14px;
+}
+
+.btn-group-lg > .btn, .btn-lg {
+  padding: 10px 16px !important;
+  font-size: 16px;
+}
+
+.btn-group-sm > .btn, .btn-sm {
+  padding: 5px 10px !important;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+  padding: 1px 5px !important;
+}
+
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  margin-left: 0px;
+}
+
+.btn-group.open .dropdown-toggle {
+  -webkit-box-shadow: 0 0 0 100px rgba(0, 0, 0, .1) inset;
+  box-shadow: 0 0 0 100px rgba(0, 0, 0, .1) inset;
+}
+
+.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger, .btn-inverse, .btn-purple, .btn-pink {
+  color: @white !important;
+}
+
+.btn-default {
+  background-color: #dae6ec;
+  border-color: #dae6ec;
+
+  &:focus {
+    background-color: #dae6ec;
+    border-color: #C2CED4;
+  }
+  &:hover {
+    background-color: #dae6ec;
+    border-color: #C2CED4;
+  }
+  &:active {
+    background-color: #dae6ec;
+    border-color: #C2CED4;
+  }
+}
+
+.btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default {
+  background-color: #dae6ec !important;
+  border-color: #C2CED4 !important;
+}
+
+.btn-primary {
+  background-color: @primary !important;
+  border: 1px solid @primary !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+  background-color: darken(@primary, 5%) !important;
+  border: 1px solid darken(@primary, 5%) !important;
+}
+
+.btn-success {
+  background-color: @success !important;
+  border: 1px solid @success !important;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open > .dropdown-toggle.btn-success {
+  background-color: darken(@success, 5%) !important;
+  border: 1px solid darken(@success, 5%) !important;
+}
+
+.btn-info {
+  background-color: @info !important;
+  border: 1px solid @info !important;
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-info:hover, .open > .dropdown-toggle.btn-info {
+  background-color: darken(@info, 5%) !important;
+  border: 1px solid darken(@info, 5%) !important;
+}
+
+.btn-warning {
+  background-color: @warning !important;
+  border: 1px solid @warning !important;
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .btn-warning.focus, .btn-warning:active, .btn-warning:focus, .btn-warning:hover, .open > .dropdown-toggle.btn-warning {
+  background-color: darken(@warning, 5%) !important;
+  border: 1px solid darken(@warning, 5%) !important;
+}
+
+.btn-danger {
+  background-color: @danger !important;
+  border: 1px solid @danger !important;
+}
+
+.btn-danger:active, .btn-danger:focus, .btn-danger:hover, .btn-danger.active, .btn-danger.focus, .btn-danger:active, .btn-danger:focus, .btn-danger:hover, .open > .dropdown-toggle.btn-danger {
+  background-color: darken(@danger, 5%) !important;
+  border: 1px solid darken(@danger, 5%) !important;
+}
+
+.btn-inverse {
+  background-color: @inverse !important;
+  border: 1px solid @inverse !important;
+}
+
+.btn-inverse:hover, .btn-inverse:focus, .btn-inverse:active, .btn-inverse.active, .btn-inverse.focus, .btn-inverse:active, .btn-inverse:focus, .btn-inverse:hover, .open > .dropdown-toggle.btn-inverse {
+  background-color: darken(@inverse, 5%) !important;
+  border: 1px solid darken(@inverse, 5%) !important;
+}
+
+.btn-purple {
+  background-color: @purple !important;
+  border: 1px solid @purple !important;
+}
+
+.btn-purple:hover, .btn-purple:focus, .btn-purple:active {
+  background-color: darken(@purple, 5%) !important;
+  border: 1px solid darken(@purple, 5%) !important;
+}
+
+.btn-pink {
+  background-color: @pink !important;
+  border: 1px solid @pink !important;
+}
+
+.btn-pink:hover, .btn-pink:focus, .btn-pink:active {
+  background-color: darken(@pink, 5%) !important;
+  border: 1px solid darken(@pink, 5%) !important;
+}
+
+.btn-custom {
+  border-bottom: 3px solid transparent;
+}
+
+.btn-custom.btn-default {
+  background-color: #dae6ec;
+  border-bottom: 2px solid darken(#C2CED4, 10%) !important;
+}
+
+.btn-custom.btn-primary {
+  border-bottom: 2px solid darken(@primary, 10%) !important;
+}
+
+.btn-custom.btn-success {
+  border-bottom: 2px solid darken(@success, 10%) !important;
+}
+
+.btn-custom.btn-info {
+  border-bottom: 2px solid darken(@info, 20%) !important;
+}
+
+.btn-custom.btn-warning {
+  border-bottom: 2px solid darken(@warning, 10%) !important;
+}
+
+.btn-custom.btn-danger {
+  border-bottom: 2px solid darken(@danger, 20%) !important;
+}
+
+.btn-custom.btn-inverse {
+  border-bottom: 2px solid darken(@inverse, 20%) !important;
+}
+
+.btn-custom.btn-purple {
+  border-bottom: 2px solid darken(@purple, 20%) !important;
+}
+
+.btn-custom.btn-pink {
+  border-bottom: 2px solid darken(@pink, 20%) !important;
+}
+
+.btn-rounded {
+  border-radius: 2em;
+  padding: 6px 18px;
+}
+
+.fileupload {
+  overflow: hidden;
+  position: relative;
+  input.upload {
+    cursor: pointer;
+    filter: alpha(opacity=0);
+    font-size: 20px;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+/* ===========
+   Panels
+ =============*/
+
+.panel {
+  border-radius: 0;
+  margin-bottom: 20px;
+  background-color: @dark;
+  border: 2px solid fade(@light,10%);
+  border-top: none;
+
+  .panel-body {
+    padding: 20px;
+    color: fade(@white,60%);
+    
+    p {
+      margin: 0px;
+    }
+    p + p {
+      margin-top: 15px;
+    }
+  }
+}
+
+.panel-heading {
+  border-radius: 0;
+  border: none !important;
+  padding: 10px 20px;
+  margin: 0 -2px;
+}
+
+.panel-default > .panel-heading {
+  background-color: fade(@white, 20%);
+  border-bottom: none;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: @white;
+}
+
+.panel-sub-title {
+  margin-bottom: 3px;
+  color: fade(@white, 60%) !important;
+  margin-top: -3px;
+}
+
+.panel-footer {
+  background: transparent;
+  border-top: 1px solid fade(@light, 20%);
+}
+
+.panel-color {
+  .panel-title {
+    color: @white;
+  }
+}
+
+.panel-primary > .panel-heading {
+  background-color: @primary;
+}
+
+.panel-success > .panel-heading {
+  background-color: @success;
+}
+
+.panel-info > .panel-heading {
+  background-color: @info;
+}
+
+.panel-warning > .panel-heading {
+  background-color: @warning;
+}
+
+.panel-danger > .panel-heading {
+  background-color: @danger;
+}
+
+.panel-purple > .panel-heading {
+  background-color: @purple;
+}
+
+.panel-pink > .panel-heading {
+  background-color: @pink;
+}
+
+.panel-inverse > .panel-heading {
+  background-color: @inverse;
+}
+
+.panel-border {
+  border-radius: 3px;
+}
+
+.panel-border .panel-heading {
+  background-color: transparent;
+  border-top: 3px solid #ccc !important;
+  border-radius: 3px;
+  padding: 10px 20px 0px;
+}
+
+.panel-border .panel-body {
+  padding: 15px 20px 20px 20px;
+}
+
+.panel-border.panel-primary .panel-heading {
+  border-color: @primary !important;
+  color: @primary !important;
+}
+
+.panel-border.panel-success .panel-heading {
+  border-color: @success !important;
+  color: @success !important;
+}
+
+.panel-border.panel-info .panel-heading {
+  border-color: @info !important;
+  color: @info !important;
+}
+
+.panel-border.panel-warning .panel-heading {
+  border-color: @warning !important;
+  color: @warning !important;
+}
+
+.panel-border.panel-danger .panel-heading {
+  border-color: @danger !important;
+  color: @danger !important;
+}
+
+.panel-border.panel-purple .panel-heading {
+  border-color: @purple !important;
+  color: @purple !important;
+}
+
+.panel-border.panel-pink .panel-heading {
+  border-color: @pink !important;
+  color: @pink !important;
+}
+
+.panel-border.panel-inverse .panel-heading {
+  border-color: @inverse !important;
+  color: @inverse !important;
+}
+
+.panel-group {
+  .panel {
+    .panel-heading {
+      a[data-toggle=collapse].collapsed {
+        &:before {
+          content: '\f067';
+        }
+      }
+      .accordion-toggle.collapsed {
+        &:before {
+          content: '\f067';
+        }
+      }
+      a[data-toggle=collapse] {
+        display: block;
+        &:before {
+          content: '\f068';
+          display: block;
+          float: right;
+          font-family: 'FontAwesome';
+          font-size: 14px;
+          text-align: right;
+          width: 25px;
+        }
+      }
+      .accordion-toggle {
+        display: block;
+        &:before {
+          content: '\f068';
+          display: block;
+          float: right;
+          font-family: 'FontAwesome';
+          font-size: 14px;
+          text-align: right;
+          width: 25px;
+        }
+      }
+    }
+    .panel-heading + .panel-collapse {
+      .panel-body {
+        border-top: none;
+      }
+    }
+  }
+  .panel-heading {
+    padding: 12px 26px;
+  }
+}
+
+.panel-group.panel-group-joined {
+  .panel + .panel {
+    border-top: 1px solid fade(@white, 30%);
+    margin-top: 0;
+  }
+}
+
+.panel-group-joined {
+  .panel-group {
+    .panel + .panel {
+      border-top: 1px solid @light;
+      margin-top: 0;
+    }
+  }
+}
+
+/* ===========
+   Portlets
+ =============*/
+
+.portlet {
+  border: 2px solid fade(@light,10%);
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  margin-bottom: 20px;
+  transition: all 0.4s;
+  .portlet-heading {
+    border-radius: 3px;
+    color: @white;
+    padding: 12px 20px;
+    margin: -1px;
+
+    .portlet-title {
+      color: @white;
+      float: left;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 0;
+      margin-top: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .portlet-widgets {
+      display: inline-block;
+      float: right;
+      font-size: 15px;
+      line-height: 30px;
+      padding-left: 15px;
+      position: relative;
+      text-align: right;
+      .divider {
+        margin: 0 5px;
+      }
+    }
+    a {
+      color: #999999;
+    }
+  }
+  .portlet-body {
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px;
+    color: @muted;
+  }
+}
+
+.portlet .portlet-heading .portlet-widgets .collapsed .ion-minus-round:before {
+  content: "\f217" !important;
+}
+
+.portlet .portlet-heading.bg-purple a, .portlet .portlet-heading.bg-info a, .portlet .portlet-heading.bg-success a, .portlet .portlet-heading.bg-primary a, .portlet .portlet-heading.bg-danger a, .portlet .portlet-heading.bg-warning a, .portlet .portlet-heading.bg-inverse a, .portlet .portlet-heading.bg-pink a {
+  color: @white;
+}
+
+.panel-disabled {
+  background: fade(@light, 20%);
+  cursor: progress;
+  bottom: 20px;
+  left: 10px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+
+.loader-1 {
+  width: 30px;
+  height: 30px;
+  background-color: @primary;
+  .border-radius(3px);
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective(120px)
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg)
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
+  }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+/* ===========
+   Checkbox and Radio
+ =============*/
+
+.checkbox {
+  padding-left: 20px;
+  label {
+    display: inline-block;
+    padding-left: 5px;
+    position: relative;
+    &::before {
+      -o-transition: 0.3s ease-in-out;
+      -webkit-transition: 0.3s ease-in-out;
+      background-color: transparent;
+      border-radius: 3px;
+      border: 2px solid @muted;
+      content: "";
+      display: inline-block;
+      height: 17px;
+      left: 0;
+      margin-left: -20px;
+      position: absolute;
+      transition: 0.3s ease-in-out;
+      width: 17px;
+      outline: none !important;
+    }
+    &::after {
+      color: @light;
+      display: inline-block;
+      font-size: 11px;
+      height: 16px;
+      left: 0;
+      margin-left: -20px;
+      padding-left: 3px;
+      padding-top: 1px;
+      position: absolute;
+      top: 0;
+      width: 16px;
+    }
+  }
+  input[type="checkbox"] {
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+    outline: none !important;
+    &:disabled + label {
+      opacity: 0.65;
+    }
+  }
+  input[type="checkbox"]:focus + label {
+    &::before {
+      outline-offset: -2px;
+      outline: none;
+    }
+  }
+  input[type="checkbox"]:checked + label {
+    &::after {
+      content: "\f00c";
+      font-family: 'FontAwesome';
+    }
+  }
+  input[type="checkbox"]:disabled + label {
+    &::before {
+      background-color: @light;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.checkbox.checkbox-circle {
+  label {
+    &::before {
+      border-radius: 50%;
+    }
+  }
+}
+
+.checkbox.checkbox-inline {
+  margin-top: 0;
+}
+
+.checkbox.checkbox-single {
+  label {
+    height: 17px;
+  }
+}
+
+.checkbox-primary {
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: @primary;
+      border-color: @primary;
+    }
+    &::after {
+      color: @white;
+    }
+  }
+}
+
+.checkbox-danger {
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: @danger;
+      border-color: @danger;
+    }
+    &::after {
+      color: @white;
+    }
+  }
+}
+
+.checkbox-info {
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: @info;
+      border-color: @info;
+    }
+    &::after {
+      color: @white;
+    }
+  }
+}
+
+.checkbox-warning {
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: @warning;
+      border-color: @warning;
+    }
+    &::after {
+      color: @white;
+    }
+  }
+}
+
+.checkbox-success {
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: @success;
+      border-color: @success;
+    }
+    &::after {
+      color: @white;
+    }
+  }
+}
+
+.checkbox-purple {
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: @purple;
+      border-color: @purple;
+    }
+    &::after {
+      color: @white;
+    }
+  }
+}
+
+.checkbox-pink {
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: @pink;
+      border-color: @pink;
+    }
+    &::after {
+      color: @white;
+    }
+  }
+}
+
+.checkbox-inverse {
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: @inverse;
+      border-color: @inverse;
+    }
+    &::after {
+      color: @white;
+    }
+  }
+}
+
+.radio {
+  padding-left: 20px;
+  label {
+    display: inline-block;
+    padding-left: 5px;
+    position: relative;
+    &::before {
+      -o-transition: border 0.5s ease-in-out;
+      -webkit-transition: border 0.5s ease-in-out;
+      background-color: transparent;
+      border-radius: 50%;
+      border: 2px solid @muted;
+      content: "";
+      display: inline-block;
+      height: 17px;
+      left: 0;
+      margin-left: -20px;
+      outline: none !important;
+      position: absolute;
+      transition: border 0.5s ease-in-out;
+      width: 17px;
+    }
+    &::after {
+      -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+      -ms-transform: scale(0, 0);
+      -o-transform: scale(0, 0);
+      -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+      -webkit-transform: scale(0, 0);
+      -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+      background-color: @muted;
+      border-radius: 50%;
+      content: " ";
+      display: inline-block;
+      height: 11px;
+      left: 3px;
+      margin-left: -20px;
+      position: absolute;
+      top: 3px;
+      transform: scale(0, 0);
+      transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+      width: 11px;
+    }
+  }
+  input[type="radio"] {
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+    outline: none !important;
+    &:disabled + label {
+      opacity: 0.65;
+    }
+  }
+  input[type="radio"]:focus + label {
+    &::before {
+      outline-offset: -2px;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline: thin dotted;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::after {
+      -ms-transform: scale(1, 1);
+      -o-transform: scale(1, 1);
+      -webkit-transform: scale(1, 1);
+      transform: scale(1, 1);
+    }
+  }
+  input[type="radio"]:disabled + label {
+    &::before {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.radio.radio-inline {
+  margin-top: 0;
+}
+
+.radio.radio-single {
+  label {
+    height: 17px;
+  }
+}
+
+.radio-primary {
+  input[type="radio"] + label {
+    &::after {
+      background-color: @primary;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      border-color: @primary;
+    }
+    &::after {
+      background-color: @primary;
+    }
+  }
+}
+
+.radio-danger {
+  input[type="radio"] + label {
+    &::after {
+      background-color: @danger;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      border-color: @danger;
+    }
+    &::after {
+      background-color: @danger;
+    }
+  }
+}
+
+.radio-info {
+  input[type="radio"] + label {
+    &::after {
+      background-color: @info;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      border-color: @info;
+    }
+    &::after {
+      background-color: @info;
+    }
+  }
+}
+
+.radio-warning {
+  input[type="radio"] + label {
+    &::after {
+      background-color: @warning;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      border-color: @warning;
+    }
+    &::after {
+      background-color: @warning;
+    }
+  }
+}
+
+.radio-success {
+  input[type="radio"] + label {
+    &::after {
+      background-color: @success;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      border-color: @success;
+    }
+    &::after {
+      background-color: @success;
+    }
+  }
+}
+
+.radio-purple {
+  input[type="radio"] + label {
+    &::after {
+      background-color: @purple;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      border-color: @purple;
+    }
+    &::after {
+      background-color: @purple;
+    }
+  }
+}
+
+.radio-pink {
+  input[type="radio"] + label {
+    &::after {
+      background-color: @pink;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      border-color: @pink;
+    }
+    &::after {
+      background-color: @pink;
+    }
+  }
+}
+
+.radio-inverse {
+  input[type="radio"] + label {
+    &::after {
+      background-color: @inverse;
+    }
+  }
+  input[type="radio"]:checked + label {
+    &::before {
+      border-color: @inverse;
+    }
+    &::after {
+      background-color: @inverse;
+    }
+  }
+}
+
+/* ===========
+   Progressbars
+ =============*/
+
+.progress {
+  -webkit-box-shadow: none !important;
+  background-color: fade(@muted, 40%);
+  box-shadow: none !important;
+  height: 10px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  box-shadow: none;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 12px;
+}
+
+.progress.progress-sm {
+  height: 5px !important;
+  .progress-bar {
+    font-size: 8px;
+    line-height: 5px;
+  }
+}
+
+.progress.progress-md {
+  height: 15px !important;
+  .progress-bar {
+    font-size: 10.8px;
+    line-height: 14.4px;
+  }
+}
+
+.progress.progress-lg {
+  height: 20px !important;
+  .progress-bar {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
+.progress-bar-primary {
+  background-color: @primary;
+}
+
+.progress-bar-success {
+  background-color: @success;
+}
+
+.progress-bar-info {
+  background-color: @info;
+}
+
+.progress-bar-warning {
+  background-color: @warning;
+}
+
+.progress-bar-danger {
+  background-color: @danger;
+}
+
+.progress-bar-inverse {
+  background-color: @inverse;
+}
+
+.progress-bar-purple {
+  background-color: @purple;
+}
+
+.progress-bar-pink {
+  background-color: @pink;
+}
+
+.progress-animated {
+  -webkit-animation-duration: 5s;
+  -webkit-animation-name: animationProgress;
+  -webkit-transition: 5s all;
+  animation-duration: 5s;
+  animation-name: animationProgress;
+  transition: 5s all;
+}
+
+/* ===========
+   Carousel
+ =============*/
+.carousel-control {
+  width: 10%;
+  span {
+    position: absolute;
+    top: 50%; /* pushes the icon in the middle of the height */
+    z-index: 5;
+    display: inline-block;
+    font-size: 30px;
+  }
+}
+
+.carousel-indicators li {
+  border: 2px solid @white;
+}
+
+/* ===========
+   Tables
+ =============*/
+
+.table {
+  margin-bottom: 10px;
+}
+
+tbody {
+  color: fade(@white, 40%);
+}
+
+th {
+  color: fade(@white, 70%);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  border-top: 1px solid fade(@white, 10%);
+}
+
+.table > thead > tr > th {
+  border-bottom: 2px solid fade(@white, 10%);
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: @dark;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd), .table-hover > tbody > tr:hover,
+.table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active,
+.table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active,
+.table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td,
+.table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
+  background-color: @dark !important;
+}
+
+.table > tbody > tr.success > td, .table > tbody > tr.success > th,
+.table > tbody > tr > td.success, .table > tbody > tr > th.success,
+.table > tfoot > tr.success > td, .table > tfoot > tr.success > th,
+.table > tfoot > tr > td.success, .table > tfoot > tr > th.success,
+.table > thead > tr.success > td, .table > thead > tr.success > th,
+.table > thead > tr > td.success, .table > thead > tr > th.success {
+  background-color: fade(@success, 15%);
+}
+
+.table > tbody > tr.info > td, .table > tbody > tr.info > th,
+.table > tbody > tr > td.info, .table > tbody > tr > th.info,
+.table > tfoot > tr.info > td, .table > tfoot > tr.info > th,
+.table > tfoot > tr > td.info, .table > tfoot > tr > th.info,
+.table > thead > tr.info > td, .table > thead > tr.info > th,
+.table > thead > tr > td.info, .table > thead > tr > th.info {
+  background-color: fade(@info, 15%);
+}
+
+.table > tbody > tr.warning > td, .table > tbody > tr.warning > th,
+.table > tbody > tr > td.warning, .table > tbody > tr > th.warning,
+.table > tfoot > tr.warning > td, .table > tfoot > tr.warning > th,
+.table > tfoot > tr > td.warning, .table > tfoot > tr > th.warning,
+.table > thead > tr.warning > td, .table > thead > tr.warning > th,
+.table > thead > tr > td.warning, .table > thead > tr > th.warning {
+  background-color: fade(@warning, 15%);
+}
+
+.table > tbody > tr.danger > td, .table > tbody > tr.danger > th,
+.table > tbody > tr > td.danger, .table > tbody > tr > th.danger,
+.table > tfoot > tr.danger > td, .table > tfoot > tr.danger > th,
+.table > tfoot > tr > td.danger, .table > tfoot > tr > th.danger,
+.table > thead > tr.danger > td, .table > thead > tr.danger > th,
+.table > thead > tr > td.danger, .table > thead > tr > th.danger {
+  background-color: fade(@danger, 15%);
+}
+
+.table-bordered {
+  border: 1px solid fade(@light, 30%);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: @dark;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+  border: 1px solid fade(@white, 20%);
+}
+
+.modal-block {
+  background: transparent;
+  margin: 40px auto;
+  max-width: 600px;
+  padding: 0;
+  position: relative;
+  text-align: left;
+}
+
+/* Data table */
+#datatable-editable {
+  .actions {
+    a {
+      padding: 5px;
+    }
+  }
+  .form-control {
+    background-color: transparent;
+    width: 100%;
+  }
+  .fa-trash-o {
+    color: @danger;
+  }
+  .fa-times {
+    color: @danger;
+  }
+  .fa-pencil {
+    color: #29b6f6;
+  }
+  .fa-save {
+    color: #33b86c;
+  }
+}
+
+#datatable {
+  td {
+    font-weight: normal;
+  }
+}
+
+div.dataTables_paginate {
+  ul.pagination {
+    margin-top: 30px;
+  }
+}
+
+div.dataTables_info {
+  padding-top: 38px;
+}
+
+.dt-buttons {
+  float: left;
+}
+
+div#datatable-buttons_info {
+  float: left;
+}
+
+/* Fixed Header */
+.fixedHeader-floating {
+  top: 70px !important;
+}
+
+/* Key table */
+table.dataTable th.focus,
+table.dataTable td.focus {
+  outline: 3px solid @primary !important;
+  outline-offset: -1px;
+}
+
+.fixedHeader-floating {
+  border: none !important;
+
+  .sorting, .sorting_asc {
+    background-color: @dark;
+    border-color: fade(@light, 30%);
+  }
+}
+
+div.DTS tbody tr.even {
+  background-color: darken(@dark, 5%);
+}
+
+div.DTS div.dataTables_scrollBody {
+  background: none !important;
+}
+
+/* Responsive table */
+.table-rep-plugin {
+  .table-responsive {
+    border: none !important;
+  }
+  .dropdown-menu li.checkbox-row {
+    color: @white !important;
+    background-color: transparent !important;
+  }
+  tbody {
+    th {
+      font-size: 14px;
+      font-weight: normal;
+    }
+  }
+  .checkbox-row {
+    padding-left: 40px;
+
+    label {
+      display: inline-block;
+      padding-left: 5px;
+      position: relative;
+      &::before {
+        -o-transition: 0.3s ease-in-out;
+        -webkit-transition: 0.3s ease-in-out;
+        background-color: @white;
+        border-radius: 3px;
+        border: 1px solid @lightdark-alt;
+        content: "";
+        display: inline-block;
+        height: 17px;
+        left: 0;
+        margin-left: -20px;
+        position: absolute;
+        transition: 0.3s ease-in-out;
+        width: 17px;
+        outline: none !important;
+      }
+      &::after {
+        color: @lightdark5;
+        display: inline-block;
+        font-size: 11px;
+        height: 16px;
+        left: 0;
+        margin-left: -20px;
+        padding-left: 3px;
+        padding-top: 1px;
+        position: absolute;
+        top: -1px;
+        width: 16px;
+      }
+    }
+    input[type="checkbox"] {
+      cursor: pointer;
+      opacity: 0;
+      z-index: 1;
+      outline: none !important;
+
+      &:disabled + label {
+        opacity: 0.65;
+      }
+    }
+    input[type="checkbox"]:focus + label {
+      &::before {
+        outline-offset: -2px;
+        outline: none;
+      }
+    }
+    input[type="checkbox"]:checked + label {
+      &::after {
+        content: "\f00c";
+        font-family: 'FontAwesome';
+      }
+    }
+    input[type="checkbox"]:disabled + label {
+      &::before {
+        background-color: @light;
+        cursor: not-allowed;
+      }
+    }
+    input[type="checkbox"]:checked + label {
+      &::before {
+        background-color: @primary;
+        border-color: @primary;
+      }
+      &::after {
+        color: @white;
+      }
+    }
+  }
+}
+
+/* Tablesaw */
+.tablesaw thead {
+  background: fade(@white, 5%);
+  background-image: none;
+  border: none;
+}
+
+.tablesaw thead th {
+  text-shadow: none;
+  letter-spacing: 0.06em;
+  color: fade(@white, 70%) !important;
+}
+
+.tablesaw thead tr:first-child th {
+  padding-top: 1.1em;
+  padding-bottom: 0.9em;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+}
+
+.tablesaw td, .tablesaw tbody th {
+  font-size: inherit;
+  line-height: inherit;
+  padding: 10px !important;
+}
+
+.tablesaw-stack tbody tr, .tablesaw tbody tr {
+  border-bottom: none;
+}
+
+.tablesaw-swipe .tablesaw-cell-persist {
+  border-right: 1px solid fade(@white,10%);
+}
+
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-ascending button:after, .tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-descending button:after {
+  font-family: FontAwesome;
+  font-size: 10px;
+}
+
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-ascending button:after {
+  content: "\f176";
+}
+
+.tablesaw-sortable .tablesaw-sortable-head.tablesaw-sortable-descending button:after {
+  content: "\f175";
+}
+
+.tablesaw-bar .btn-select.btn-small:after, .tablesaw-bar .btn-select.btn-micro:after {
+  font-size: 8px;
+  padding-right: 10px;
+}
+
+.tablesaw-swipe .tablesaw-cell-persist {
+  box-shadow: none;
+}
+
+.tablesaw-enhanced .tablesaw-bar .btn {
+  text-shadow: none;
+  background-image: none;
+  color: fade(@white,70%) !important;
+}
+
+.tablesaw-enhanced .tablesaw-bar .btn.btn-select {
+  &:hover {
+    background: transparent;
+  }
+}
+
+.tablesaw-enhanced .tablesaw-bar .btn:hover, .tablesaw-enhanced .tablesaw-bar .btn:focus, .tablesaw-enhanced .tablesaw-bar .btn:active {
+  color: @primary !important;
+  background-color: @light5;
+  outline: none !important;
+  box-shadow: none !important;
+  background-image: none;
+}
+
+/* Footable */
+.footable-odd {
+  background-color: darken(@dark,2%);
+}
+
+/* Responsive table */
+table.focus-on tbody tr.unfocused th, table.focus-on tbody tr.unfocused td {
+    color: fade(@white,25%);
+}
+
+table.focus-on {
+  tbody {
+    tr.focused {
+      th {
+        background-color: @primary;
+        color: @white;
+      }
+      td {
+        background-color: @primary;
+        color: @white;
+      }
+    }
+  }
+}
+
+.table-rep-plugin .sticky-table-header.fixed-solution {
+  top: 70px !important;
+  background-color: darken(@dark, 5%);
+  border: 0;
+}
+
+/* =============
+     Form elements
+  ============= */
+
+.error {
+  color: @danger;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.parsley-error {
+  border-color: @danger !important;
+}
+
+.parsley-errors-list {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+.parsley-errors-list.filled {
+  display: block;
+}
+
+.parsley-errors-list > li {
+  font-size: 12px;
+  list-style: none;
+  color: #f6504d;
+}
+
+/* Datepicker */
+.datepicker {
+  padding: 8px;
+  th {
+    font-size: 14px !important;
+  }
+}
+
+.datepicker table tr td.today, .datepicker table tr td.today:hover,
+.datepicker table tr td.today.disabled, .datepicker table tr td.today.disabled:hover,
+.datepicker table tr td.selected, .datepicker table tr td.selected:hover,
+.datepicker table tr td.selected.disabled, .datepicker table tr td.selected.disabled:hover,
+.datepicker table tr td span.active, .datepicker table tr td span.active:hover,
+.datepicker table tr td span.active.disabled, .datepicker table tr td span.active.disabled:hover {
+  background-image: none;
+}
+
+.datepicker table tr td span.active:hover, .datepicker table tr td span.active:hover:hover,
+.datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:hover:hover,
+.datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active,
+.datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active,
+.datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active,
+.datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:hover.active,
+.datepicker table tr td span.active.disabled, .datepicker table tr td span.active:hover.disabled,
+.datepicker table tr td span.active.disabled.disabled, .datepicker table tr td span.active.disabled:hover.disabled,
+.datepicker table tr td span.active[disabled], .datepicker table tr td span.active:hover[disabled],
+.datepicker table tr td span.active.disabled[disabled], .datepicker table tr td span.active.disabled:hover[disabled] {
+  background-color: @primary;
+}
+
+.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active.disabled,
+.datepicker table tr td.active.disabled:hover {
+  background-color: @primary !important;
+  background-image: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.datepicker thead tr:first-child th:hover, .datepicker tfoot tr th:hover {
+  background-color: darken(@dark, 10%);
+}
+
+.datepicker-inline {
+  border: 2px solid fade(@light, 30%);
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: @primary;
+  border-color: @primary;
+}
+
+.daterangepicker .input-mini.active {
+  border: 1px solid #AAAAAA;
+}
+
+.daterangepicker .ranges li {
+  .border-radius(2px);
+  color: @muted;
+  font-weight: 600;
+  font-size: 12px;
+  border-color: @dark;
+  background-color: @dark;
+}
+
+.daterangepicker select.hourselect, .daterangepicker select.minuteselect,
+.daterangepicker select.secondselect, .daterangepicker select.ampmselect {
+  border: 1px solid #e3e3e3;
+  padding: 2px;
+  width: 60px;
+}
+
+.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
+  background-color: @primary;
+  border: 1px solid @primary;
+}
+
+.search-input {
+  margin-bottom: 10px;
+}
+
+.ms-selectable {
+  box-shadow: none;
+  outline: none !important;
+}
+
+.ms-container {
+  .ms-list.ms-focus {
+    box-shadow: none;
+  }
+  .ms-selectable {
+    li.ms-hover {
+      background-color: @primary;
+    }
+  }
+  .ms-selection {
+    li.ms-hover {
+      background-color: @primary;
+    }
+  }
+}
+
+.note-editor {
+  border: 2px solid fade(@white, 20%);
+  position: relative;
+  color: @muted;
+  .note-toolbar {
+    background-color: transparent;
+    border-bottom: 1px solid @light;
+    margin: 0;
+  }
+  .note-statusbar {
+    background-color: transparent;
+    .note-resizebar {
+      border-top: none;
+      height: 15px;
+      padding-top: 3px;
+    }
+  }
+  .note-editing-area {
+    .note-editable {
+      background: transparent;
+      color: @muted;
+    }
+  }
+}
+
+.note-popover .popover .popover-content .note-color .dropdown-menu .btn-group .note-palette-title,
+.panel-heading.note-toolbar .note-color .dropdown-menu .btn-group .note-palette-title,
+.note-popover .popover .popover-content .note-color .dropdown-menu .btn-group .note-color-reset,
+.panel-heading.note-toolbar .note-color .dropdown-menu .btn-group .note-color-reset {
+  color: @dark;
+}
+
+.note-popover {
+  .popover {
+    .popover-content {
+      padding: 5px 0 10px 5px;
+    }
+  }
+}
+
+.note-toolbar {
+  padding: 5px 0 10px 5px;
+}
+
+/* Timepicker */
+.bootstrap-timepicker-widget {
+  table {
+    td {
+      a {
+        &:hover {
+          background-color: transparent;
+          border-color: transparent;
+          border-radius: 4px;
+          color: @primary;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.editor-horizontal {
+  .popover-content {
+    padding: 9px 30px;
+  }
+}
+
+.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover {
+  background-color: @primary !important;
+  background-image: none;
+  box-shadow: none;
+}
+
+/* Dropzone */
+.dropzone {
+  min-height: 230px;
+  border: 2px dashed fade(@white, 20%);
+  background: transparent;
+  border-radius: 6px;
+
+  .dz-message {
+    font-size: 30px;
+  }
+}
+
+/* =============
+   Calendar
+============= */
+
+.calendar {
+  float: left;
+  margin-bottom: 0px;
+}
+
+.fc-view {
+  margin-top: 30px;
+}
+
+.none-border {
+  .modal-footer {
+    border-top: none;
+  }
+}
+
+.fc-toolbar {
+  margin-bottom: 5px;
+  margin-top: 15px;
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 30px;
+    text-transform: uppercase;
+  }
+}
+
+.fc-day {
+  background: transparent;
+}
+
+.fc-toolbar .fc-state-active, .fc-toolbar .ui-state-active,
+.fc-toolbar button:focus, .fc-toolbar button:hover,
+.fc-toolbar .ui-state-hover {
+  z-index: 0;
+}
+
+.fc-widget-header {
+  border: 1px solid @light5;
+}
+
+.fc-widget-content {
+  border: 1px solid @light5;
+}
+
+.fc {
+  th.fc-widget-header {
+    background: fade(@white, 20%);
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 0px;
+    text-transform: uppercase;
+  }
+}
+
+.fc-unthemed th, .fc-unthemed td, .fc-unthemed thead, .fc-unthemed tbody,
+.fc-unthemed .fc-divider, .fc-unthemed .fc-row, .fc-unthemed .fc-popover {
+  background-color: transparent;
+  border-color: fade(@white, 10%);
+}
+
+.fc-button {
+  background: @white;
+  border: 1px solid @light5;
+  color: #555555;
+  text-transform: capitalize;
+}
+
+.fc-text-arrow {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.fc-state-hover {
+  background: #F5F5F5;
+}
+
+.fc-state-highlight {
+  background: #f0f0f0;
+}
+
+.fc-cell-overlay {
+  background: #f0f0f0;
+}
+
+.fc-unthemed {
+  .fc-today {
+    background: transparent;
+  }
+}
+
+.fc-event {
+  border-radius: 2px;
+  border: none;
+  cursor: move;
+  font-size: 13px;
+  margin: 5px 7px;
+  padding: 5px 5px;
+  text-align: center;
+}
+
+.external-event {
+  color: @white;
+  cursor: move;
+  margin: 10px 0;
+  padding: 6px 10px;
+}
+
+.fc-basic-view {
+  td.fc-week-number {
+    span {
+      padding-right: 5px;
+    }
+  }
+  td.fc-day-number {
+    padding-right: 5px;
+  }
+}
+
+/* ===========
+   Widgets
+ =============*/
+
+/* Inbox-widget */
+
+.inbox-widget {
+  .inbox-item {
+    border-bottom: 1px solid @dark;
+    overflow: hidden;
+    padding: 10px 0;
+    position: relative;
+    .inbox-item-img {
+      display: block;
+      float: left;
+      margin-right: 15px;
+      width: 40px;
+    }
+    img {
+      width: 40px;
+    }
+    .inbox-item-author {
+      color: @light5;
+      display: block;
+      margin: 0;
+    }
+    .inbox-item-text {
+      color: @muted;
+      display: block;
+      font-size: 12px;
+      margin: 0;
+    }
+    .inbox-item-date {
+      color: @muted;
+      font-size: 11px;
+      position: absolute;
+      right: 7px;
+      top: 2px;
+    }
+  }
+}
+
+/* Chat widget */
+.conversation-list {
+  list-style: none;
+  height: 332px;
+  padding: 0px 20px;
+  li {
+    margin-bottom: 24px;
+  }
+  .chat-avatar {
+    display: inline-block;
+    float: left;
+    text-align: center;
+    width: 42px;
+    img {
+      border-radius: 100%;
+      width: @width;
+    }
+    i {
+      font-size: 12px;
+      font-style: normal;
+      color: @muted;
+    }
+  }
+  .ctext-wrap {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background: fade(@white, 10%);
+    border-radius: 3px;
+    display: inline-block;
+    padding: 12px;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    i {
+      color: @light5;
+      display: block;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: bold;
+      position: relative;
+    }
+    p {
+      margin: 0px;
+      padding-top: 3px;
+      color: @muted;
+    }
+    &:after {
+      right: 100%;
+      top: 0%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-top-color: fade(@white, 10%);
+      border-width: 8px;
+      margin-left: -1px;
+      border-right-color: fade(@white, 10%);
+    }
+  }
+  .conversation-text {
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    margin-left: 12px;
+    width: 70%;
+  }
+  .odd {
+    .chat-avatar {
+      float: right !important;
+    }
+    .conversation-text {
+      float: right !important;
+      margin-right: 12px;
+      text-align: right;
+      width: 70% !important;
+    }
+    .ctext-wrap {
+      &:after {
+        border-color: rgba(238, 238, 242, 0) !important;
+        border-left-color: fade(@white, 10%) !important;
+        border-top-color: fade(@white, 10%) !important;
+        left: 100% !important;
+        margin-right: -1px;
+      }
+    }
+  }
+}
+
+.chat-send {
+  padding-left: 0px;
+  padding-right: 30px;
+  button {
+    width: @width;
+  }
+}
+
+.chat-inputbar {
+  padding-left: 30px;
+}
+
+/* Todos widget */
+
+#todo-message {
+  font-size: 16px;
+}
+
+.todo-list {
+  li {
+    border-radius: 0px;
+    border: 0px;
+    margin: 0px;
+    padding: 1px;
+    color: @muted;
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background: transparent !important;
+    }
+  }
+}
+
+.todo-send {
+  padding-left: 0px;
+}
+
+/* Widget-chart */
+.widget-chart {
+  ul {
+    li {
+      width: 31.5%;
+      display: inline-block;
+      padding: 0px;
+    }
+  }
+}
+
+.widget-panel {
+  padding: 30px 20px;
+  padding-left: 30px;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 20px;
+
+  i {
+    font-size: 60px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    line-height: 60px;
+  }
+}
+
+.widget-user {
+  min-height: 112px;
+  img {
+    height: 72px;
+    float: left;
+  }
+
+  .wid-u-info {
+    margin-left: 90px;
+
+    p {
+      white-space: nowrap;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.widget-simple-chart {
+  .circliful-chart {
+    float: left;
+    margin-top: -5px;
+  }
+}
+
+.widget-icon {
+  i {
+    float: left;
+    font-size: 48px;
+  }
+  .wid-icon-info {
+    margin-left: 80px;
+  }
+}

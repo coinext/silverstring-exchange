@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+<head th:include="./dashboard/header :: header">
+
+</head>
+
+
+<body>
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <!-- Page-Title -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">현재 회원님의  <span style="color:orange">접속내역</span> 입니다</h3>
+                        <p class="text-muted font-13 m-b-30">
+                            - 최근 회원님의 30일간의 내역을 제공합니다.
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                        <div id="datatable-keytable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div style="position: absolute; height: 1px; width: 0px; overflow: hidden;">
+                                        <input type="text" tabindex="0">
+                                    </div>
+                                    <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable-keytable_info" style="position: relative;">
+                                        <thead>
+                                        <tr role="row" bgcolor="#faebd7">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 80px;">날짜</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 80px;">구분</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 80px;">아이피</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 300px;">정보</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="actionLogsBodyId">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="dataTables_info" id="datatable-keytable_info" role="status" aria-live="polite">
+                                        * 고객님의 접속기록을 확인해보세요.
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="datatable-keytable_paginate">
+                                        <ul class="pagination" id="actionLogs-datatable-keytable_paginate">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+        </div>
+    </div>
+    <!-- End wrapper -->
+    <footer class="footer text-right">
+        <div th:include="./dashboard/footer :: footer"></div>
+    </footer>
+</div>
+    <script th:src="'js/common/utils.js?dummy='+ ${version}"></script>
+    <script th:src="'js/api/actionlog_api.js?dummy='+ ${version}"></script>
+    <script th:inline="javascript" type="text/javascript">
+
+        function loadActionLogs(pageNo) {
+            var params = new Object();
+            params.pageNo=pageNo;
+            params.pageSize = 20;
+            actionLogApi.getActionLogs(function(result) {
+                if (result.code == 0000) {
+                    var body = $("#actionLogsBodyId");
+                    var rows = "";
+                    result.data.actionLogs.forEach(function(actionLog) {
+                        rows += '<tr role="row" class="odd">' +
+                                '<td class="sorting_1">' + actionLog.regDtm + '</td>' +
+                                '<td>' + actionLog.tag + '</td>' +
+                                '<td>' + actionLog.ip + '</td>' +
+                                '<td>' + actionLog.userAgent + '</td>' +
+                                '</tr>';
+                    });
+                    body.html(rows);
+
+                    var pageObj = $("#actionLogs-datatable-keytable_paginate");
+                    rows = '<li class="paginate_button previous disabled" aria-controls="datatable-keytable" tabindex="0" id="datatable-keytable_previous">' +
+                            '<a href="#">이전</a>' +
+                            '</li>';
+
+                    for (var page = 1;page <= result.data.pageTotalCnt; page++) {
+                        var className = "paginate_button";
+                        if (page -1 == result.data.pageNo) {
+                            className += " active";
+                        }
+                        rows += '<li class="' + className + '" aria-controls="datatable-keytable" tabindex="0">' +
+                                '<a href="#" onclick="loadActionLogs(' + (page-1) + '); return false">' + page + '</a>' +
+                                '</li>';
+                    }
+
+                    rows += '<li class="paginate_button" aria-controls="datatable-keytable" tabindex="0">' +
+                            '<a href="#">다음</a>' +
+                            '</li>';
+                    pageObj.html(rows);
+                } else {
+                    utils.errorAlert("접속정보리스트 불러오기에 실패하였습니다.", result.msg, null);
+                }
+            }, params);
+        }
+
+        function init() {
+            loadActionLogs(0);
+        }
+        init();
+    </script>
+
+</body>
+</html>

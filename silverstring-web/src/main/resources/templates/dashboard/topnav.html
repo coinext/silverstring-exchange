@@ -1,0 +1,119 @@
+<html>
+<div th:fragment="topnav" >
+<div class="topbar-main">
+    <div class="container">
+
+        <!-- Logo container-->
+        <div class="logo">
+            <a href="/" class="logo"><i class="md md-equalizer"></i> <span>COINEXT, 안전한 암호화화폐 거래소</span> </a>
+        </div>
+        <!-- End Logo container-->
+
+        <div class="menu-extras">
+
+            <ul class="nav navbar-nav navbar-right pull-right">
+                <li class="dropdown">
+                    <a href="/logout" class="dropdown-toggle waves-effect waves-light">로그아웃</a>
+                </li>
+            </ul>
+
+            <div class="menu-item">
+                <!-- Mobile menu toggle-->
+                <a class="navbar-toggle">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- End mobile menu toggle-->
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="navbar-custom">
+    <div class="container">
+        <div id="navigation">
+            <!-- Navigation Menu-->
+            <ul class="navigation-menu">
+                <li class="has-submenu">
+                    <a href="/dashboard"><i class="md md-dashboard"></i>대시보드</a>
+                </li>
+                <li class="has-submenu">
+                    <a href="/deposit_manage"><i class="fa fa-list"></i>입금</a>
+                    <ul class="submenu">
+                        <div th:each="coin : ${coins.infos}">
+                            <li><a th:href="'/deposit_manage?selectionCoin=' + ${coin.name} + '&type=deposit'"><img style="width:18px;height:18px;" th:src="${coin.logoUrl}"/><block style="margin-left: 10px;" th:text="${coin.hanName} + ' 입금'"></block></a></li>
+                        </div>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="/withdrawal_manage"><i class="fa fa-list"></i>출금</a>
+                    <ul class="submenu">
+                        <div th:each="coin : ${coins.infos}">
+                            <li><a th:href="'/withdrawal_manage?selectionCoin=' + ${coin.name} + '&type=withdrawal'"><img style="width:18px;height:18px;" th:src="${coin.logoUrl}"/><block style="margin-left: 10px;" th:text="${coin.hanName} + ' 출금'"></block></a></li>
+                        </div>
+                    </ul>
+                </li>
+                <!--<li class="has-submenu">
+                    <a href="/simple_trade"><i class="fa fa-spin fa-circle-o-notch"></i>간편거래</a>
+                    <ul class="submenu">
+                        <div th:each="coin : ${coins.infos}">
+                            <li><a th:href="'/simple_trade?selectionCoin=' + ${coin.name}"><img style="width:18px;height:18px;" th:src="${coin.logoUrl}"/><block style="margin-left: 10px;" th:text="${coin.hanName}"></block></a></li>
+                        </div>
+                        <li><a href="components-sweet-alert.html">자산현황</a></li>
+                        <li><a href="components-sweet-alert.html">내 거래내역</a></li>
+                    </ul>
+                </li>-->
+                <li class="has-submenu">
+                    <a href="/trade"><i class="fa fa-spin fa-circle-o-notch"></i>차트거래</a>
+                    <ul class="submenu">
+                        <div th:each="coin : ${coins.infos}">
+                            <block th:if="${coin.name.name() != 'KRW'}">
+                                <li><a th:href="'/trade?selectionCoin=' + ${coin.name}"><img style="width:18px;height:18px;" th:src="${coin.logoUrl}"/><block style="margin-left: 10px;" th:text="${coin.hanName}"></block></a></li>
+                            </block>
+                        </div>
+                        <li><a href="/assets_manage">자산현황</a></li>
+                        <li><a href="/trade_history">내 거래내역</a></li>
+                    </ul>
+                </li>
+
+                <!--<li class="has-submenu">
+                    <a href="#"><i class="md md-pages"></i>쿠폰</a>
+                    <ul class="submenu">
+                        <li><a href="components-grid.html">구매하기</a></li>
+                    </ul>
+                </li>-->
+
+                <li class="has-submenu">
+                    <a href="#"><i class="md md-folder-special"></i>마이페이지</a>
+                    <ul class="submenu">
+                        <li>
+                            <ul>
+                                <li><a href="/myinfo_manage">회원정보관리</a></li>
+                                <li><a href="/auth_manage">인증센터</a></li>
+                                <li><a href="/access_manage">접속정보</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="#"><i class="fa fa-weixin"></i>고객지원</a>
+                    <ul class="submenu megamenu">
+                        <li>
+                            <ul>
+                                <li><a href="/support_manage">고객센터</a></li>
+                                <li><a href="/faq_manage">도움말</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- End navigation menu -->
+        </div> <!-- end #navigation -->
+    </div> <!-- end container -->
+</div>
+</div>
+</html>

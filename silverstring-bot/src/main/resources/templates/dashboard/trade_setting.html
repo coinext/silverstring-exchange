@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<head th:include="./dashboard/header :: header">
+
+</head>
+
+
+<body>
+
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+    <link href="assets/dashboard/css/chartist.min.css" rel="stylesheet" type="text/css" />
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title"><i class="md md-keyboard-arrow-right text-primary"></i>TRADING 설정 상태</h4>
+                <p>
+                    - TRADING 설정상태를 나타냅니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="text-left card-box">
+                    <div class="tab-content br-n pn">
+                        <button class="btn btn-danger waves-effect waves-light" style="width:260px;">트래이딩 동작중입니다.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="text-left card-box">
+                    <div class="tab-content br-n pn">
+                        <label>판매 수익률 %설정 : </label>
+                        <input type="text" id="state-success" name="state-success" class="form-control" placeholder="판매수익률을 입력하세요">
+                    </div>
+                    <br/>
+                    <div class="tab-content br-n pn">
+                        <label>손절 수익률 %설정 : </label>
+                        <input type="text" id="state-success" name="state-success" class="form-control" placeholder="손절수익률을 입력하세요">
+                    </div>
+                    <br/>
+                    <div class="tab-content br-n pn">
+                        <label>판단시간 설정 : </label>
+                        <input type="text" id="state-success" name="state-success" class="form-control" placeholder="판단시간을(초단위) 입력하세요">
+                    </div>
+                    <br/>
+                    <button class="btn btn-success waves-effect waves-light" style="width:260px;">설정 저장</button>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="footer text-right">
+            <div th:include="./dashboard/footer :: footer"></div>
+        </footer>
+        <!-- End Footer -->
+
+    </div> <!-- end container -->
+</div>
+<div th:include="./dashboard/modal/add :: add"></div>
+<div th:include="./dashboard/modal/del :: del"></div>
+<div th:include="./dashboard/modal/edit :: edit"></div>
+
+<!-- End wrapper -->
+<script th:src="'js/lib/form-to-obj.min.js?dummy=' + ${version}"></script>
+<script th:src="'js/common/utils.js?dummy=' + ${version}"></script>
+<script th:src="'js/service/table.js?dummy=' + ${version}"></script>
+<!-- End wrapper -->
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

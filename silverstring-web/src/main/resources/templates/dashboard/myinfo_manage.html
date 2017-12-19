@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html>
+<head th:include="./dashboard/header :: header">
+
+</head>
+
+
+<body>
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <!-- Page-Title -->
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>비밀번호 변경</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="tab-content br-n pn">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav nav-pills m-b-30" style="background-color: whitesmoke;">
+                                        <li style="margin-left: 20px;margin-right: 20px;margin-top: 10px;margin-bottom: 10px;">
+                                            회원님의 로그인시 <span style="color:orange">비밀번호</span>를 변경합니다. 신중히 변경진행 해주세요.<br/>
+                                            비밀번호 변경완료시 자동로그아웃됩니다. 다시 로그인해주세요.<br/>
+                                        </li>
+                                    </ul>
+                                    <br/>
+                                    <div class="col-md-8">
+                                        <form id="myInfoFormId" class="form-horizontal" role="form">
+                                            <input type="hidden" name="coinName" class="form-control">
+                                            <input type="hidden" name="coinUnit" class="form-control">
+                                            <input type="hidden" name="onceAmount" class="form-control">
+                                            <input type="hidden" name="onedayAmount" class="form-control">
+                                            <input type="hidden" name="myLimitAmount" class="form-control">
+                                            <input type="hidden" name="availableBalance" class="form-control">
+                                            <input type="hidden" name="minWithdrawalAmount" class="form-control">
+
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">e-Mail</label>
+                                                <div class="col-md-8">
+                                                    <p class="form-control-static" style="color:orange" th:text="${user.email}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">현재 비밀번호</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="password" class="form-control" placeholder="현재 비밀번호를 정확히 입력해주세요.">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">새로운 비밀번호</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="newPassword" class="form-control" placeholder="새로운 비밀번호를 정확히 입력해주세요.">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">새로운 비밀번호 확인</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="newPasswordRe" class="form-control" placeholder="새로운 비밀번호를 정확히 입력해주세요.">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">OTP코드</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="otp" class="form-control" placeholder="OTP를 입력해 주세요.">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-12" style="text-align:center;">
+                                        <button type="button" class="btn btn-danger waves-effect waves-light w-lg m-b-5" th:onclick="'onChangePasswordClick()'">비밀번호 변경하기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col-md-6">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>회원탈퇴</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content br-n pn">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav nav-pills m-b-30" style="background-color: whitesmoke;">
+                                        <li style="margin-left: 20px;margin-right: 20px;margin-top: 10px;margin-bottom: 10px;">
+                                            ※회원 탈퇴 전, 아래의 내용을 확인 해주시기 바랍니다.<br/>
+                                        </li>
+                                    </ul>
+                                    <br/>
+                                    <p>
+                                        1. 회원 탈퇴 신청 불가 사유<br/>
+                                        아래의 사항 중 하나 이상 해당할 경우 회원 탈퇴가 불가능합니다.<br/>
+                                        - KRW 잔고가 남아있을 경우<br/>
+                                        - 가상화폐 잔고가 남아있을 경우<br/>
+                                        - 진행중인 거래가 있을 경우<br/>
+                                    </p>
+                                    <br>
+                                    <p>
+                                        2. 회원 정보 삭제<br/>
+                                        회원 탈퇴와 함께 해당사이트에 등록된 회원님의 개인정보는 모두 삭제, 폐기 처리되며 복구되지 않습니다.<br/>
+                                    </p>
+                                    <br/>
+                                    <p>
+                                        3. 회원 탈퇴 요청 방법<br/>
+                                        회원 탈퇴 요청은 contact@coinest.com 의 메일 주소로 탈퇴 요청 내용을 보내주시면 확인 후 탈퇴 처리 진행됩니다.<br/>
+                                    </p>
+                                    <br/>
+                                    <br/>
+                                    <div class="col-md-8">
+                                        <form id="releaseFormId" class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" style="color:red">OTP코드</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="otp" class="form-control" placeholder="OTP를 입력해 주세요.">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-12" style="text-align:center;">
+                                        <button type="button" class="btn btn-danger waves-effect waves-light w-lg m-b-5" th:onclick="'onReleaseMemberClick()'">회원 탈퇴하기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+            <footer class="footer text-right">
+                <div th:include="./dashboard/footer :: footer"></div>
+            </footer>
+        </div>
+    </div>
+    <!-- End wrapper -->
+
+    <script th:src="'js/common/utils.js?dummy='+ ${version}"></script>
+    <script th:src="'js/api/user_api.js?dummy='+ ${version}"></script>
+    <script th:inline="javascript" type="text/javascript">
+        function init() {
+        }
+
+        init();
+
+        function onChangePasswordClick() {
+            var formData = formToObj(document.getElementById('myInfoFormId'));
+
+            if (formData.password == "") {
+                utils.errorAlert("비밀변호변경에 실패하였습니다.", "현재 패스워드를 정확히 입력해주세요", null);
+                return;
+            }
+
+            if (formData.newPassword == "") {
+                utils.errorAlert("비밀변호변경에 실패하였습니다.", "새로운 패스워드를 정확히 입력해주세요", null);
+                return;
+            }
+
+            if (formData.newPasswordRe == "") {
+                utils.errorAlert("비밀변호변경에 실패하였습니다.", "새로운 패스워드확인을 정확히 입력해주세요", null);
+                return;
+            }
+
+            if (formData.newPasswordRe != formData.newPassword) {
+                utils.errorAlert("비밀변호변경에 실패하였습니다.", "패스워드를 정확히 입력해주세요", null);
+                return;
+            }
+
+            if (formData.otp == "") {
+                utils.errorAlert("비밀변호변경에 실패하였습니다.", "OTP를 정확히 입력해주세요", null);
+                return;
+            }
+
+            userApi.changePassword(function(result) {
+                if (result.code == 0000) {
+                    utils.successAlert("비밀변호변경에 성공하였습니다.", result.msg, function () {
+                    });
+                } else {
+                    utils.errorAlert("비밀변호변경에 실패하였습니다.", result.msg, null);
+                }
+            }, formData);
+        }
+
+        function onReleaseMemberClick() {
+            var formData = formToObj(document.getElementById('releaseFormId'));
+            if (formData.otp == "") {
+                utils.errorAlert("회원탈퇴에 실패하였습니다.", "OTP를 정확히 입력해주세요", null);
+                return;
+            }
+
+            userApi.releaseMember(function(result) {
+                if (result.code == 0000) {
+                    utils.successAlert("회원탈퇴에 성공하였습니다.", result.msg, function () {
+                    });
+                } else {
+                    utils.errorAlert("회원탈퇴에 실패하였습니다.", result.msg, null);
+                }
+            }, formData);
+        }
+    </script>
+
+</body>
+</html>

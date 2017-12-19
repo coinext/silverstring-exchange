@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- <include resource="org/springframework/boot/logging/logback/base.xml"/> -->
+    <property resource="application.properties"/>
+    <property resource="application-${spring.profiles.active:-local}.properties"/>
+
+    <!-- Appenders -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyMMdd HH:mm:ss.SSS} %highlight(%-5level) [%thread] %green(%logger{35}):%line - %magenta(%msg) %n</pattern> <!--%date-->
+        </encoder> <!--[%thread] -->
+        <withJansi>true</withJansi>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>/data/logs/application_%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <charset>UTF-8</charset>
+            <pattern>%date %level [%thread] %logger{35}:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE" />
+    </appender>
+
+    <logger name="org.springframework.amqp.rabbit.listener" level="ERROR"/>
+    <!-- logger level 조정 -->
+    <!--<logger name="org.springframework" level="INFO"/>
+    <logger name="org.mybatis" level="ERROR"/>
+    <logger name="org.apache" level="ERROR"/>
+    <logger name="org.apache.http" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.type" level="ALL"/>
+    <logger name="org.hibernate" level="ERROR"/>
+    <logger name="com.zaxxer.hikari.pool.HikariPool" level="DEBUG"/>
+    <logger name="org.springframework.web.client.RestTemplate" level="ERROR"/>
+-->
+
+  <!--  <appender name="Sentry" class="com.getsentry.raven.logback.SentryAppender">
+        <dsn>
+            ${sentry.url}
+        </dsn>
+        <tags>system:api</tags>
+        <param name="extraTags" value="USER_ID,GUID,URI" />
+    </appender>
+    <logger name="io.dj" level="WARN">
+        <appender-ref ref="Sentry"/>
+    </logger>
+-->
+    <!-- Root Logger -->
+    <root level="${logback.level}">
+        <if condition='property("spring.profiles.active").equals("local")'>
+            <then>
+                <appender-ref ref="CONSOLE"/>
+            </then>
+        </if>
+        <appender-ref ref="ASYNC_FILE"/>
+    </root>
+
+</configuration>

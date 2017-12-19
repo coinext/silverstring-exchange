@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head th:include="./dashboard/header :: header">
+
+</head>
+
+
+<body>
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <!-- Page-Title -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">FAQ</h3>
+                        <p class="text-muted font-13 m-b-30">
+                            - 자주 묻는 질문을 보여줍니다.
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+        </div>
+    </div>
+    <footer class="footer text-right">
+        <div th:include="./dashboard/footer :: footer"></div>
+    </footer>
+</div>
+    <!-- End wrapper -->
+
+    <script th:src="'js/common/utils.js?dummy='+ ${version}"></script>
+    <script th:inline="javascript" type="text/javascript">
+    </script>
+
+</body>
+</html>

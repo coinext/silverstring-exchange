@@ -1,0 +1,26 @@
+task buildApidoc(type: Exec) {
+    description "apiDoc을 생성"
+
+    executable "sh"
+    args "-c", "apidoc -i src -o build/apidoc"
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+
+
+task deployApidoc(type: Exec) {
+    dependsOn buildApidoc
+    description "apiDoc을 xxx/apidoc 에 배포"
+    executable "sh"
+    args "-c", "rsync -avz --delete --exclude=.git build/apidoc/ xxx/apidoc/$project.name/"
+
+    doFirst {
+        println "-----------------------------------------------------------"
+        println "* apidoc link : http://xxx/apidoc   "
+        println "-----------------------------------------------------------"
+    }
+    ext.output = {
+        return standardOutput.toString()
+    }
+}

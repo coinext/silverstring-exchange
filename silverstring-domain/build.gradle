@@ -1,0 +1,22 @@
+group 'com.silverstring'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework:spring-context-support:$springVersion"
+    compile "org.springframework.boot:spring-boot-starter-security:$springBootVersion"
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion") {
+        exclude module: 'tomcat-jdbc'
+    }
+    compile "org.springframework:spring-orm:$springVersion"
+    compile group: 'org.hibernate', name: 'hibernate-java8', version: '5.0.9.Final'
+    compile "javax.validation:validation-api:1.1.0.Final"
+    compile 'com.google.code.gson:gson:2.7'
+    compile "org.springframework.boot:spring-boot-starter-redis:1.4.3.RELEASE"
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

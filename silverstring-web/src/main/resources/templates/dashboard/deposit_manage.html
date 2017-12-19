@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html>
+<head th:include="./dashboard/header :: header">
+
+</head>
+
+
+<body>
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <!-- Page-Title -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>입금하기</h3 class="panel-title">
+                    </div>
+                    <ul class="nav nav-pills m-b-30" style="background-color: whitesmoke">
+                        <li class="" th:each="info : ${walletInfos.infos}" th:id="'deposit-nav-li-' + ${info.coin.name}">
+                            <a th:onclick="'onDepositTabChange(' + '\'' + ${info.coin.name} + '\'' + ')'" th:href="'#deposit-nav-content-' + ${info.coin.name}" data-toggle="tab" aria-expanded="true"><img th:src="${info.coin.logoUrl}" style="width:22px;height:22px;"/>&nbsp;<span th:text="${info.coin.hanName}"/></a>
+                        </li>
+                    </ul>
+                    <div class="panel-body">
+                        <div class="tab-content br-n pn">
+                            <div th:each="info : ${walletInfos.infos}" th:id="'deposit-nav-content-' + ${info.coin.name}" class="tab-pane" >
+                                <div class="row">
+                                    <block th:unless="${info.wallet.address} == null" >
+                                        <div class="col-md-1">
+                                            <img th:src="'https://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=' + ${info.wallet.address}" class="img-responsive thumbnail m-r-15">
+                                        </div>
+                                    </block>
+                                    <div class="col-md-11">
+                                        <p>
+                                            아래 주소로 <span style="color:orange" th:text="${info.coin.hanName}"></span>을 입금 해주세요.<br/>
+                                            신규 가입하신 회원님께서는 주소 생성하기 버튼을 클릭하셔야 고유 <span style="color:orange" th:text="${info.coin.hanName}"></span>주소가 발급됩니다.
+                                        </p>
+                                        <br/>
+                                        <p>
+                                            회원님의 <span style="color:orange" th:text="${info.coin.hanName}"></span> 입금 주소 :<br/>
+                                        <h2 style="color:orange" th:if="${info.wallet.address} == null">
+                                            <button th:onclick="'createWallet(' + '\'' + ${info.coin.name} + '\')'" class="btn btn-danger" th:text = "${info.coin.hanName} + ' 입금지갑주소를 생성합니다.'"></button>
+                                        </h2>
+                                        <h3 style="color:orange" th:unless="${info.wallet.address} == null" th:text="${info.wallet.address} + ${info.wallet.bankName == null ? '' : ' *은행명 : ' + info.wallet.bankName} + ${info.wallet.bankName == null ? '' : ' *수취인명 : ' + info.wallet.recvCorpNm}">
+                                        </h3>
+                                        </p>
+                                        <br/>
+                                        <p>
+                                            <span style="color:orange" th:text="${info.coin.hanName}"></span>을 판매하기 위해서는 먼저 회원님의 Coinest 전자지갑에 판매할 <span style="color:orange" th:text="${info.coin.hanName}"></span> 을 직접 입금하시거나 다른 회원으로부터 <span style="color:orange" th:text="${info.coin.hanName}"></span>을 구매하셔야 합니다. <br/>
+                                            회원님께 할당된 위 코인 주소로 <span style="color:orange" th:text="${info.coin.hanName}"></span> 을 전송하시면 회원님의 전자지갑에 반영됩니다.<br/>
+                                            반영 시점: 입금거래후 10~30분 이후 자동으로 반영됩니다.<br/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-border panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>입금 거래내역</h3>
+                        <p class="text-muted font-13 m-b-30">
+                            - 해당 가상화폐의 과거입금 내역을 보실수 있습니다.
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                        <div id="datatable-keytable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div style="position: absolute; height: 1px; width: 0px; overflow: hidden;">
+                                        <input type="text" tabindex="0">
+                                    </div>
+                                    <table id="datatable-keytable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable-keytable_info" style="position: relative;">
+                                        <thead>
+                                        <tr role="row" bgcolor="#faebd7">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 120px;">상태</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 500px;">주소</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">금액</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">컨펌수</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 180px;">등록일자</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 180px;">완료일자</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 100px;">비고 (TXID)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="depositTransactionBodyId">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="dataTables_info" id="datatable-keytable_info" role="status" aria-live="polite">
+                                        * 입금오류/미반영에 대해서는 고객센터를 이용해주세요.
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="datatable-keytable_paginate">
+                                        <ul class="pagination" id="deposit-datatable-keytable_paginate">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+            <footer class="footer text-right">
+                <div th:include="./dashboard/footer :: footer"></div>
+            </footer>
+        <!-- End Footer -->
+
+    </div> <!-- end container -->
+</div>
+<!-- End wrapper -->
+
+<script th:src="'js/common/utils.js?dummy='+ ${version}"></script>
+<script th:src="'js/api/wallet_api.js?dummy='+ ${version}"></script>
+<script th:src="'js/api/transaction_api.js?dummy='+ ${version}"></script>
+
+<script th:inline="javascript" type="text/javascript">
+    var selectionDepositCoin = /*[[${selectionCoin}]]*/
+
+    $("#deposit-nav-li-" + selectionDepositCoin).attr("class", "active");
+    $("#deposit-nav-content-" + selectionDepositCoin).attr("class", "tab-pane active");
+    $("#deposit-history-title-id").text(selectionDepositCoin + " 입금 거래내역");
+
+    function init() {
+        loadDepositTransactions(0);
+    }
+
+    function loadDepositTransactions(pageNo) {
+        var params = new Object();
+        params.category = "receive";
+        params.coinName = selectionDepositCoin;
+        params.pageNo = pageNo;
+        params.pageSize = 2;
+        transactionApi.getTransactions(function(result) {
+            if (result.code == 0000) {
+                var transactionBody = $("#depositTransactionBodyId");
+                var rows = "";
+                result.data.transactions.forEach(function(transaction) {
+                    rows += '<tr role="row" class="odd">' +
+                            '<td class="sorting_1">' + utils.convertStatusToMessage(transaction.status) + '</td>' +
+                            '<td>' + (selectionDepositCoin == "KRW" ? transaction.bankNm + "  " + transaction.address + "  " + transaction.recvNm: transaction.address) + '</td>' +
+                            '<td>' + transaction.amount + '</td>' +
+                            '<td>' + transaction.confirmation + " / " + transaction.coin.depositAllowConfirmation + '</td>' +
+                            '<td>' + transaction.regDt + '</td>' +
+                            '<td>' + (transaction.status == "PENDING" ? "-" : transaction.completeDtm) + '</td>' +
+                            '<td>' + (transaction.status == "COMPLETED" ? '<a href="#" onclick="utils.infoAlert(\'입금거래내역 상세보기\', \'' + transaction.txId + '\', null);return false">보기</a>' : "-") + '</td>' +
+                            '</tr>';
+                });
+                transactionBody.html(rows);
+
+                var pageObj = $("#deposit-datatable-keytable_paginate");
+                rows = '<li class="paginate_button previous disabled" aria-controls="datatable-keytable" tabindex="0" id="datatable-keytable_previous">' +
+                        '<a href="#">이전</a>' +
+                        '</li>';
+
+                for (var page = 1;page <= result.data.pageTotalCnt; page++) {
+                    var className = "paginate_button";
+                    if (page -1 == result.data.pageNo) {
+                        className += " active";
+                    }
+                    rows += '<li class="' + className + '" aria-controls="datatable-keytable" tabindex="0">' +
+                            '<a href="#" onclick="loadDepositTransactions(' + (page-1) + '); return false">' + page + '</a>' +
+                            '</li>';
+                }
+
+                rows += '<li class="paginate_button" aria-controls="datatable-keytable" tabindex="0">' +
+                        '<a href="#">다음</a>' +
+                        '</li>';
+                pageObj.html(rows);
+            } else {
+                utils.errorAlert("입금리스트 불러오기에 실패하였습니다.", result.msg, null);
+            }
+        }, params);
+    }
+
+    function onDepositTabChange(coin) {
+        selectionDepositCoin = coin;
+        $("#deposit-history-title-id").text(coin + " 입금 거래내역");
+        loadDepositTransactions(0);
+    }
+
+    function createWallet(coin) {
+        $("#deposit-history-title-id").text(selectionDepositCoin + " 입금 거래내역");
+
+        var params = new Object();
+        params.coinName = coin;
+
+        walletApi.create(function(result) {
+            if (result.code == 0000) {
+                utils.successAlert("입금주소 생성에 성공하였습니다.", result.msg, function () {
+                    location.href = "/deposit_manage?selectionCoin=" + selectionDepositCoin;
+                });
+            } else {
+                utils.errorAlert("입금주소 생성에 실패하였습니다.", result.msg, null);
+            }
+        }, params);
+    }
+
+    init();
+</script>
+
+</body>
+</html>

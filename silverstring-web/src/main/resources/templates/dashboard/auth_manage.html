@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html>
+<head th:include="./dashboard/header :: header">
+
+</head>
+
+
+<body>
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <!-- Page-Title -->
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>현재 회원님의 레벨은 <span style="color:orange"  th:text="${user.level}"></span> 입니다</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div style="position: absolute; height: 1px; width: 0px; overflow: hidden;">
+                                        <input type="text" tabindex="0">
+                                    </div>
+                                    <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable-keytable_info" style="position: relative;">
+                                        <thead>
+                                        <tr role="row" bgcolor="#faebd7">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 200px;">구분</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 160px;">일회 출금 가능 잔여한도</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 160px;">일일 출금 가능 잔여한도</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="walletInfo : ${walletInfos.infos}">
+                                            <tr role="row" class="odd">
+                                                <td th:text="${walletInfo.wallet.coin.hanName} + ' (' + ${walletInfo.wallet.coin.name} + ' )'"></td>
+                                                <td th:text="${#numbers.formatDecimal(walletInfo.level.onceAmount,1,8,'POINT')}"></td>
+                                                <td th:text="${#numbers.formatDecimal(walletInfo.wallet.todayWithdrawalTotalBalance,1,8,'POINT')}"></td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col-md-6">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>아래와 같은 인증방법을 통해 인증레벨을 변경할수있습니다. ( 현재 레벨 : <span style="color:orange" th:text="${user.level}"></span> )</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div style="position: absolute; height: 1px; width: 0px; overflow: hidden;">
+                                        <input type="text" tabindex="0">
+                                    </div>
+                                    <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable-keytable_info" style="position: relative;">
+                                        <thead>
+                                        <tr role="row" bgcolor="#faebd7">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="3" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 120px;">구분</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 20%;">LEVEL 1</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%;;">LEVEL 2</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 20%;">LEVEL 3</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="first" rowspan="2">입금한도</td>
+                                            <td class="first" colspan="2">원화</td>
+                                            <td class="r">무제한</td>
+                                            <td class="on" rowspan="2">무제한</td>
+                                            <td class="" rowspan="2">무제한</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="first r" colspan="2">가상화폐</td>
+                                            <td class="r">무제한</td>
+                                        </tr>
+                                        <th:block th:each="level,iter : ${levels}">
+                                            <tr>
+                                                <th:block th:if="${iter.index == 0}">
+                                                    <td class="first"  th:rowspan="${iter.size} * 2">출금한도</td>
+                                                    <td class="first" rowspan="2" th:text="${level.coinName}"></td>
+                                                </th:block>
+                                                <th:block th:if="${iter.index != 0}">
+                                                    <td class="first" rowspan="2" th:text="${level.coinName}"></td>
+                                                </th:block>
+                                                <td class="first">1회</td>
+                                                <td class="r" th:text="${level.level1.onceAmount}">0</td>
+                                                <td class="on" th:text="${level.level2.onceAmount}">0</td>
+                                                <td class="" th:text="${level.level3.onceAmount}">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">일</td>
+                                                <td class="r" th:text="${level.level1.onedayAmount}">0</td>
+                                                <td class="on" th:text="${level.level2.onedayAmount}">0</td>
+                                                <td class="" th:text="${level.level3.onedayAmount}">0</td>
+                                            </tr>
+                                        </th:block>
+                                        <tr>
+                                            <td class="first" colspan="3">인증방법</td>
+                                            <td class="r">
+                                                <span class="btn_org_s" style="color:#a94442">회원가입시 E-mail 인증완료</span>
+                                            </td>
+                                            <td class="on">
+                                                <form method="POST" enctype="multipart/form-data" id="idcardUploadForm">
+                                                    <input type='file' id='idcard-file' name='file' style="display: none;"/>
+                                                    <th:block th:if="${user.level.name() != 'LEVEL1'}">
+                                                        <span class="btn_org_s" style="color:#a94442">신분증(여권) 인증완료</span>
+                                                    </th:block>
+                                                    <th:block th:if="${user.level.name() == 'LEVEL1'}">
+                                                        <button id='idcard-upload' type="file" class="btn btn-danger">신분증(여권) 등록하기</button>
+                                                    </th:block>
+                                                </form>
+                                            </td>
+                                            <td class="">
+                                                <form method="POST" enctype="multipart/form-data" id="docUploadForm">
+                                                    <input type='file' id='doc-file' name='file' style="display: none;"/>
+                                                    <th:block th:if="${user.level.name() == 'LEVEL1'}">
+                                                        <span class="btn_org_s">LEVEL2 필요.</span>
+                                                    </th:block>
+                                                    <th:block th:if="${user.level.name() == 'LEVEL2'}">
+                                                        <button id='doc-upload' type="file" class="btn btn-danger">서약서 등록하기</button>
+                                                    </th:block>
+                                                    <th:block th:if="${user.level.name() == 'LEVEL3'}">
+                                                        <span class="btn_org_s" style="color:#a94442">서약서 인증완료</span>
+                                                    </th:block>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+        </div>
+        <footer class="footer text-right">
+            <div th:include="./dashboard/footer :: footer"></div>
+        </footer>
+    </div>
+    <!-- End wrapper -->
+
+    <script th:src="'js/common/utils.js?dummy='+ ${version}"></script>
+    <script th:src="'js/api/wallet_api.js?dummy='+ ${version}"></script>
+    <script th:src="'js/api/transaction_api.js?dummy='+ ${version}"></script>
+
+    <script th:inline="javascript" type="text/javascript">
+
+        $('#idcard-file').change(function(e) {
+             var ext = $("#idcard-file").val().split(".").pop().toLowerCase();
+             if(ext.length > 0){
+                 if($.inArray(ext, ["gif","png","jpg","jpeg"]) == -1) {
+                     utils.errorAlert("실패하였습니다.", "png 파일만 업로드 할수 있습니다", null);
+                     return false;
+                 }
+             }
+
+            $.ajax({
+                url: '/api/level/upload/idcard',
+                type: 'post',
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                cache: false,
+                data: new FormData($("#idcardUploadForm")[0]),
+                success: function(data){
+                    utils.successAlert("성공하였습니다.", "파일업로드", null);
+                    $("#idcard-file").val(null);
+                },
+                error: function (data) {
+                    utils.errorAlert("실패하였습니다.", result.msg, null);
+                    $("#idcard-file").val(null);
+                }
+            })
+        });
+
+        $('#doc-file').change(function(e) {
+            var ext = $("#doc-file").val().split(".").pop().toLowerCase();
+            if(ext.length > 0){
+                if($.inArray(ext, ["gif","png","jpg","jpeg"]) == -1) {
+                    utils.errorAlert("실패하였습니다.", "png 파일만 업로드 할수 있습니다", null);
+                    return false;
+                }
+            }
+
+            $.ajax({
+                url: '/api/level/upload/doc',
+                type: 'post',
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                cache: false,
+                data: new FormData($("#docUploadForm")[0]),
+                success: function(data){
+                    utils.successAlert("성공하였습니다.", "파일업로드", null);
+                    $("#doc-file").val(null);
+                },
+                error: function (data) {
+                    utils.errorAlert("실패하였습니다.", result.msg, null);
+                    $("#doc-file").val(null);
+                }
+            })
+        });
+
+        $('#idcard-upload').click(function(e){
+            e.preventDefault();
+            $("#idcard-file").click();
+        });
+
+        $('#doc-upload').click(function(e){
+            e.preventDefault();
+            $("#doc-file").click();
+        });
+
+        function init() {
+        }
+        init();
+    </script>
+
+</body>
+</html>

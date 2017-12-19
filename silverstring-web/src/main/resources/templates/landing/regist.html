@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+        <meta name="author" content="Coderthemes">
+
+        <link rel="shortcut icon" href="assets/dashboard/images/favicon_1.ico">
+
+        <title>Coinext</title>
+
+        <link href="assets/dashboard/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/core.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/components.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/pages.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/menu.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/responsive.css" rel="stylesheet" type="text/css">
+
+        <script src="assets/dashboard/js/modernizr.min.js"></script>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+    <body>
+
+
+        <div class="wrapper-page">
+            <input id="msg" name="msg" type="hidden" th:value="${msg}">
+            <div class="text-center">
+                <a href="/" class="logo logo-lg"><i class="md md-equalizer"></i> <span>Coinext</span> </a>
+            </div>
+            <form class="form-horizontal m-t-20" action="/user/doRegist" method="post">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input id="email" name="email" class="form-control" type="email" required="" placeholder="Email">
+                        <i class="md md-email form-control-feedback l-h-34"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input id="pwd" name="pwd" class="form-control" type="password" required="" placeholder="Password (최소 8자리이상)">
+                        <i class="md md-vpn-key form-control-feedback l-h-34"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input  id="repwd" name="repwd" class="form-control" type="password" required="" placeholder="ConfirmPassword (최소 8자리이상)">
+                        <i class="md md-vpn-key form-control-feedback l-h-34"></i>
+                    </div>
+                </div>
+
+                <input id="fingerprint" name="fingerprint" class="form-control" type="hidden" required="">
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="checkbox checkbox-primary">
+                            <input name="agree" id="agree" type="checkbox" checked="checked">
+                            <label for="agree">
+                                <a data-toggle="modal" data-target="#agreeModal">거래소 약관 (보기)</a>에 동의합니다
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group text-right m-t-20">
+                    <div class="col-xs-12">
+                        <button id="registBtnId" class="btn btn-primary btn-custom waves-effect waves-light w-md" type="submit">가입하기</button>
+                    </div>
+                </div>
+
+                <div class="form-group m-t-30">
+                    <div class="col-sm-12 text-center">
+                        <a href="/login" class="text-muted">이미 계졍을 가지고 계신가요?</a>
+                    </div>
+                </div>
+            </form>
+
+            <div id="agreeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Coinext 거래소 이용약관</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>기본 약관의 주요 내용 고지 (본 기본 약관의 주요 내용은 회사가 회원의 권익을 위하여, 약관의 규제에 관한 법률에 따른 법률상 의
+                            무를 이행하기 위하여 별도로 회원에게 고지하는 것입니다. 그러므로, 회원은 본 기본 약관의 주요 내용을
+                            반드시 확인하고, 본 기본 약관의 주요 내용을 이해할 수 없거나 의문이 발생하는 경우에는 기본 약관 전
+                            체를 숙독하여 주시기 바랍니다.)</p>
+                            <hr>
+                            <p>1. 본 약관은 개인 회원과 회사 사이의 기본적인 사항을 규정하기 위한 것으로, 법인 회원의 경우 기본 약관
+                            제 19 조의 규정을 확인하여 주시기 바랍니다.</p>
+                            <p>2. 대한민국의 법률로 인하여 14 세 미만의 회원은 법정대리인의 동의가 없는 경우, 회원 가입이
+                            불가능합니다. 회사는 14 세 미만의 회원이 회원으로 가입하였음을 확인한 경우, 즉시 회원에게
+                            법정대리인의 동의 여부를 증명할 것을 요구하거나 또는 14 세 미만의 회원을 회원의 동의 없이 탈퇴
+                            처리할 수 있습니다.</p>
+                            <p>3. 접속자가 회사의 서비스를 이용하기 위하여 회원의 계정, 비밀번호 기타 회원이 회사에게 제공한 로그인
+                            정보와 일치하는 정보를 기입하여 회사의 모바일 및 웹페이지에 접속할 경우, 해당 접속 기간 중
+                            이루어지는 모든 거래 행위는 해당 회원의 진정한 의사에 기한 것으로 간주됩니다. 그러므로 회원은 계정,
+                            비밀번호 기타 정보에 대한 보안을 유지하여야 하고, 스스로 금융사고 또는 범죄로 인한 피해를
+                            주의하여야 합니다.</p>
+                            <p>4. 비트코인 등 가상화폐의 경우, 발행주체가 존재하지 아니하므로 대한민국 내·외의 (회사를 포함하여 어떠한)
+                            제 3 자도 가치를 보증하거나 지급을 보증하지 아니합니다. 그러므로 비트코인 등 가상화폐에는,
+                            대한민국의 법률 기타 행정청의 유권해석, 경제환경 등에 따라 매우 큰 변동성이 있을 수 있고 비트코인
+                            등 가상화폐의 거래에 대한 법률행위의 해석이 국가별로 상이하여 법정화폐와 다른 특유의 위험성이
+                            내재되어 있으므로, 회원은 반드시 이 점에 주의하여야 합니다.</p>
+                            <p>5. Coinext 거래서비스의 경우, 회원이 블록체인 기술을 이용하여 가상화폐를 제 3 자와 거래할 수 있도록
+                            회사가 제공하는 서비스입니다. 현재 블록체인 기술은 제 3 자에 의하여 변조가 불가능한 것으로 평가 받고
+                            있으나, 이는 기술의 발전 또는 기타 예상할 수 없는 사정에 의하여 언제든지 변경될 수 있습니다.</p>
+                            <p>6. 회원이 회사의 서비스를 이용하여 가상화폐를 거래하였을 경우, 해당 가상화폐의 거래내역은 블록체인에
+                            기록이 되어 전 세계의 가상화폐 이용자가 해당 거래의 진실성 등을 확인할 수 있게 됩니다. 다만,
+                            통신사업자 등 제 3 자의 귀책사유, 회사 내 서버의 점검, 블록체인 자체의 오류 등으로 인하여, 거래내역이
+                            확인되는 블록체인의 정합성이 훼손된 경우, 회사 또는 회사가 아닌 제 3 자에 의하여 거래내역이 과거의
+                            특정 시점으로 복구될 수 있습니다.</p>
+                            <p>7. 회사는 365 일, 24 시간 서비스를 제공하기 위하여 노력하고 있으나, 이를 보증하는 것이 아닙니다. 회원
+                            또는 제 3 자의 불법행위 등으로 인하여 서비스가 일시 중단되거나 서비스에 오류가 발생하는 등의 문제가
+                            발생할 경우, 회사는 문제를 해결하고 서비스를 재개합니다. 이 때, 회원은 회사에 대하여 회사가 보유하고
+                            있는 거래 기록에 근거하여 복구를 요청할 수 있으나, 회사는 어떠한 경우에도 거래 기록 복구에 따른
+                            차익을 보전하거나 다른 종류의 가상화폐 또는 KRW 로 회원의 손해를 배상하지 아니합니다.</p>
+                            <p>8. 최근 스미싱, 파밍 등 전자금융사기의 수단으로 비트코인 등 가상화폐를 이용하는 경우가 발생하고
+                            있습니다. 그러므로 회원은 반드시 전자금융사기로 인하여 피해가 발생하지 않도록 스스로 주의를
+                            기울여야 하고, 만일 전자금융사기로 인하여 수사기관, 사법부, 행정청 기타 공권력의 조사가 이루어져
+                            해당 계정 및 전자지갑 등의 동결이 필요할 경우, 회사는 회원의 동의 없이 해당 계정 및 전자지갑 등을
+                            동결할 수 있습니다.</p>
+                            <p>9. 회원의 불법행위로 인하여, 회사에게 손해가 발생할 경우, 회사는 회원에게 법률상 손해배상청구권을
+                            행사할 수 있습니다. 그러므로 반드시 법령을 준수하여 회사의 서비스를 이용하여 주시기 바랍니다.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary waves-effect" data-dismiss="modal">동의합니다.</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+        </div>
+
+        
+    	<script>
+            var resizefunc = [];
+        </script>
+
+        <!-- Main  -->
+        <script src="assets/dashboard/js/jquery.min.js"></script>
+        <script src="assets/dashboard/js/bootstrap.min.js"></script>
+        <script src="assets/dashboard/js/detect.js"></script>
+        <script src="assets/dashboard/js/fastclick.js"></script>
+        <script src="assets/dashboard/js/jquery.slimscroll.js"></script>
+        <script src="assets/dashboard/js/jquery.blockUI.js"></script>
+        <script src="assets/dashboard/js/waves.js"></script>
+        <script src="assets/dashboard/js/wow.min.js"></script>
+        <script src="assets/dashboard/js/jquery.nicescroll.js"></script>
+        <script src="assets/dashboard/js/jquery.scrollTo.min.js"></script>
+        <script src="assets/dashboard/js/notify.min.js"></script>
+        <script src="assets/dashboard/js/notify-metro.js"></script>
+
+        <!-- Custom main Js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ClientJS/0.1.11/client.min.js"></script>
+        <script src="assets/dashboard/js/jquery.core.js"></script>
+        <script src="assets/dashboard/js/jquery.app.js"></script>
+        <script src="js/common/utils.js?dummy=2"></script>
+        <script src="js/lib/form-to-obj.min.js?dummy=2"></script>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                //fingerprint setup.
+                var client = new ClientJS();
+                var fingerprint = client.getFingerprint();
+                $("#fingerprint").val(fingerprint);
+
+                //error popup
+                var msg = $("#msg").val();
+                if (msg == "succeed") {
+                    utils.showInfoAlert("가입하신 메일을 확인하시고 메일에서 인증하기를 눌려주세요.");
+                } else if (msg == "invalid") {
+                    utils.showErrorAlert("가입처리에 문제가 발생하였습니다.");
+                } else if (msg == "already") {
+                    utils.showErrorAlert("이미 있는 사용자입니다.");
+                }
+
+
+
+                $("#registBtnId").click(function () {
+
+                    var formData = formToObj(document.querySelector('form'));
+
+                    if (utils.isEmpty(formData.email)) {
+                        utils.showErrorAlert("Email을 정확히 입력해주세요");
+                        return false;
+                    }
+
+                    if (!utils.validateEmail(formData.email)) {
+                        utils.showErrorAlert("Email형식에 맞지않습니다.");
+                        return false;
+                    }
+
+                    if (utils.isEmpty(formData.pwd) || formData.pwd.length < 8) {
+                        utils.showErrorAlert("Password을 정확히 입력해주세요");
+                        return false;
+                    }
+
+                    if (utils.isEmpty(formData.repwd) || formData.repwd.length < 8) {
+                        utils.showErrorAlert("ConfirmPassword을 정확히 입력해주세요");
+                        return false;
+                    }
+
+                    if (formData.pwd != formData.repwd) {
+                        utils.showErrorAlert("Password가 맞지않습니다.");
+                        return false;
+                    }
+
+                    if (formData.agree != "on") {
+                        utils.showErrorAlert("약관에 동의해주세요");
+                        return false;
+                    }
+                    return true;
+                });
+            });
+        </script>
+	</body>
+</html>

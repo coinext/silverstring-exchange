@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:include="./dashboard/header :: header"></th:block>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amstock.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+</head>
+
+
+<body>
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+        <input id="userId" type="hidden" th:value="${user.id}">
+        <input id="selectionCoin" type="hidden" th:value="${selectionCoin}">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>내 거래내역</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="datatable-keytable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable-keytable_info" style="position: relative;">
+                            <thead>
+                            <tr role="row" bgcolor="#faebd7">
+                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="color:gray;width: 250px;">날짜</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="color:gray;width: 80px;">화폐</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="color:gray;width: 80px;">구분</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="color:gray;width: 350px;">금액</th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="color:gray;width: 280px;">갯수</th>
+                            </tr>
+                            </thead>
+                            <tbody id="myHistoryBodyId">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info" id="datatable-keytable_info" role="status" aria-live="polite" style="margin-left: 10px;">
+                                * 고객님의 거래내역을 확인해보세요.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="dataTables_paginate paging_simple_numbers" id="datatable-keytable_paginate">
+                                <ul class="pagination" id="myHistoryOrders-datatable-keytable_paginate">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- end row -->
+
+        <!-- Footer -->
+        <footer class="footer text-right">
+            <div th:include="./dashboard/footer :: footer"></div>
+        </footer>
+        <!-- End Footer -->
+
+    </div> <!-- end container -->
+</div>
+<!-- End wrapper -->
+
+<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+<script th:src="'js/common/utils.js?dummy=' + ${version}"></script>
+<script th:src="'js/api/common_api.js?dummy=' + ${version}"></script>
+<script th:src="'js/api/wallet_api.js?dummy=' + ${version}"></script>
+<script th:src="'js/api/transaction_api.js?dummy=' + ${version}"></script>
+<script th:src="'js/api/trade_api.js?dummy=' + ${version}"></script>
+<script th:src="'js/chart/stock_chart.js?dummy=' + ${version}"></script>
+<script th:src="'js/service/trade.js?dummy=' + ${version}"></script>
+<script th:src="'js/websock/stomp.min.js?dummy=' + ${version}"></script>
+<script th:src="'js/websock/websock_handler.js?dummy=' + ${version}"></script>
+
+<script th:inline="javascript" type="text/javascript">
+
+    function init() {
+        loadMyHistoryOrders(0, 20);
+    }
+
+    init();
+</script>
+
+</body>
+</html>

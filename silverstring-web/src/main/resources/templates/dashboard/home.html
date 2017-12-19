@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html>
+<head th:include="./dashboard/header :: header">
+
+</head>
+
+
+<body>
+
+<!-- Navigation Bar-->
+<header id="topnav" >
+    <div th:include="./dashboard/topnav :: topnav"></div>
+    <link href="assets/dashboard/css/chartist.min.css" rel="stylesheet" type="text/css" />
+</header>
+<!-- End Navigation Bar-->
+
+
+<!-- =======================
+     ===== START PAGE ======
+     ======================= -->
+
+<div class="wrapper">
+    <div class="container">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Welcome !</h4>
+            </div>
+        </div>
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>거래현황</h3>
+                        <p class="text-muted m-b-25 font-13">
+                            - 해당 가상화폐의 실시간 거래현황을 한눈에 보실수있습니다.
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tablesaw m-t-20 table m-b-0 tablesaw-stack">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>화폐</th>
+                                    <th>현재가</th>
+                                    <th>변동률(%)</th>
+                                    <th>거래량</th>
+                                    <th>구매/판매</th>
+                                </tr>
+                                </thead>
+                                <tbody id="currentCoinBodyId">
+
+                                <block th:each="currentCoinInfo : ${currentCoinInfos}">
+                                    <tr>
+                                        <td><img style="width:24px;height:24px;" th:src="${currentCoinInfo.coinInfo.logoUrl}"/></td>
+                                        <td th:text="${currentCoinInfo.coinInfo.hanName} + ' (' + ${currentCoinInfo.coinInfo.name} + ')'"></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><a class="btn-sm btn-danger">거래하기</a></td>
+                                    </tr>
+                                </block>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col -8 -->
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="panel panel-border panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>공지사항</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                <tr th:each="notice,iter : ${notices}">
+                                    <td style="width:1px;"><span class="label label-danger">N</span></td>
+                                    <td><a th:href="${notice['url']}" target="_blank" th:text="${notice['title']}" style="color: black"></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-1">
+                <div class="card-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVSuHTN2Ssu8W68JU4vYq3WLX3E0E8zKa-8adK3EZHjYiIhWP3CQ" style="width: 100px;height: 140px;"/>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="panel panel-border panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>보도자료</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                <tr th:each="news : ${newsList}">
+                                    <td style="width:1px;"><span class="label label-danger">N</span></td>
+                                    <td><a th:href="${news['url']}" target="_blank" th:text="${news['title']}" style="color: black"></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-1">
+                <div class="card-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDlqbOsFsWU_4pyFlJHL8dSiqO7TMY0L6Z0kPBbpUviF8QsjbX" style="width: 100px;height: 140px;"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- end col -8 -->
+            <div class="col-md-4">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>마켓 거래내역</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content br-n pn">
+                            <table id="datatable-keytable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable-keytable_info" style="position: relative;">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="color:gray;width: 250px;">날짜</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="color:gray;width: 80px;">구분</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="color:gray;width: 350px;">금액</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="color:gray;width: 280px;">갯수</th>
+                                </tr>
+                                </thead>
+                                <tbody id="marketHistoryBodyId">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>구매 시세 (BUY)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content br-n pn">
+                            <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable-keytable_info" style="position: relative;">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="color:gray;width: 50px;">상태</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="color:gray;width: 260px;">금액</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="color:gray;width: 280px;">갯수</th>
+                                </tr>
+                                </thead>
+                                <tbody id="buyHogaBodyId">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-border panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>판매 시세 (SELL)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content br-n pn">
+                            <table class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable-keytable_info" style="position: relative;">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="color:gray;width: 50px;">상태</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="color:gray;width: 260px;">금액</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable-keytable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="color:gray;width: 280px;">갯수</th>
+                                </tr>
+                                </thead>
+                                <tbody id="sellHogaBodyId">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-border panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i><span id="selectedGraphSpanId">BITCOIN</span> <span style="color:red;">24시간</span> 거래 그래프</h3>
+                        <p class="text-muted m-b-25 font-13">
+                            - 해당 가상화폐의 실시간 거래현황을 한눈에 보실수있습니다.
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                        <block th:each="currentCoinInfo : ${currentCoinInfos}">
+
+                            <button class="btn btn-success btn-custom waves-effect w-md waves-light m-b-5" th:onclick="'onGraphClick(\'' + ${currentCoinInfo.coinInfo.name} + '\');'"><img th:src="${currentCoinInfo.coinInfo.logoUrl}" style="width:22px;height:22px;"/>&nbsp;<span th:text="${currentCoinInfo.coinInfo.hanName} + ' (' + ${currentCoinInfo.coinInfo.name} + ')'"/></button>
+                        </block>
+                        <div class="widget-chart text-center">
+
+                            <div id="chart-with-area"><canvas width="476" height="100" style="display: inline-block; width: 476px; height: 100px; vertical-align: top;"></canvas></div>
+                            <ul class="list-inline m-t-15">
+                                <li>
+                                    <h4 class="text-muted m-t-20"><i class="md md-file-upload text-primary"></i><span style="color:indianred">최고가</span></h4>
+                                    <h4 class="m-b-0" id="maxPriceId">100,000 원</h4>
+                                </li>
+                                <li>
+                                    <h4 class="text-muted m-t-20"><i class="md md-file-download text-primary"></i><span style="color:#00b19d">최저가</span></h4>
+                                    <h4 class="m-b-0" id="minPriceId">$100,000 원</h4>
+                                </li>
+                                <li>
+                                    <h4 class="text-muted m-t-20"><i class="md md-keyboard-arrow-right text-primary"></i>평균가</h4>
+                                    <h4 class="m-b-0" id="avgPriceId">100,000 원</h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" >
+                <div class="panel panel-border panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="md md-keyboard-arrow-right text-primary"></i>ICO 추천</h3>
+                        <p class="text-muted m-b-25 font-13">
+                            - ICO진행중인 좋은 가상화폐를 추천해드립니다.
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                        <block th:each="recommendIcoSite : ${recommendIcoSites}">
+                            <div class="card-box widget-user">
+                                <div>
+                                    <a th:href="${recommendIcoSite.url}" target="_blank">
+                                        <img th:src="${recommendIcoSite.imgUrl}" class="img-responsive img-circle" alt="user">
+                                    </a>
+                                    <div class="wid-u-info">
+                                        <h4 class="m-t-0 m-b-5" th:text="${recommendIcoSite.title}"></h4>
+                                        <p class="text-muted m-b-5 font-13" th:text="${recommendIcoSite.content}"></p>
+                                        <small class="text-warning"><b th:text="${recommendIcoSite.email}"></b></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </block>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="footer text-right">
+            <div th:include="./dashboard/footer :: footer"></div>
+        </footer>
+        <!-- End Footer -->
+        <input id="selectionCoin" type="hidden" th:value="${selectionCoin}">
+    </div> <!-- end container -->
+</div>
+<!-- End wrapper -->
+<script th:src="'js/common/utils.js?dummy=' + ${version}"></script>
+<script th:src="'js/api/common_api.js?dummy=' + ${version}"></script>
+<script th:src="'js/api/trade_api.js?dummy=' + ${version}"></script>
+<script th:src="'js/service/dashboard.js?dummy=' + ${version}"></script>
+<script th:src="'js/service/trade.js?dummy=' + ${version}"></script>
+<script th:src="'assets/dashboard/js/chartist.min.js?dummy=' + ${version}"></script>
+
+<script type="text/javascript">
+    loadCurrentCoinInfos();
+    loadMarketHistoryOrders(10);
+    loadHogaOrders(10);
+
+    function onGraphClick(selectedCoin) {
+        $("#selectedGraphSpanId").text(selectedCoin);
+        commonApi.get24hGraphData()
+
+        var params = new Object();
+        params.coin = selectedCoin;
+
+        commonApi.get24hGraphData(function (data) {
+            new Chartist.Line('#chart-with-area', {
+                labels: data.dates,
+                series: [
+                    data.prices
+                ]
+            }, {
+                low: 0,
+                showArea: true
+            });
+
+
+            $("#maxPriceId").text(data.maxPrice + " 원");
+            $("#minPriceId").text(data.minPrice + " 원");
+            $("#avgPriceId").text(data.avgPrice + " 원");
+
+        }, params);
+    }
+
+    onGraphClick("BITCOIN");
+
+
+</script>
+
+</body>
+</html>

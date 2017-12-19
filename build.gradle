@@ -1,0 +1,75 @@
+group 'com.silverstring'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+ext {
+    springBootVersion = '1.5.6.RELEASE'
+    springVersion = '4.3.8.RELEASE'
+    tomcatVersion = '8.5.12'
+}
+
+subprojects {
+
+    buildscript {
+        repositories {
+            mavenCentral()
+            maven { url "https://raw.github.com/maleficarum/maven/master" }
+            maven { url "http://repo.spring.io/libs-release" }
+            maven { url "http://repo.spring.io/milestone" }
+            maven { url 'http://repo.spring.io/plugins-release' }
+            maven { url "https://plugins.gradle.org/m2/" }
+        }
+
+        dependencies {
+            classpath 'gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.13.1'
+            classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+        }
+    }
+
+    dependencies {
+
+        apply plugin: 'java'
+        apply plugin: 'idea'
+        apply plugin: 'eclipse'
+
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+
+        version '1.0-SNAPSHOT'
+
+        // utils
+        compile 'org.projectlombok:lombok:1.16.10'
+        compile 'com.google.guava:guava:19.0'
+        compile 'org.apache.commons:commons-lang3:3.4'
+        compile 'org.apache.commons:commons-collections4:4.1'
+        compile 'commons-io:commons-io:2.5'
+        compile 'org.modelmapper:modelmapper:0.7.7'
+        compile 'com.google.code.findbugs:jsr305:3.0.1'
+
+        // log
+        compile 'ch.qos.logback:logback-classic:1.2.2'
+        compile 'org.slf4j:slf4j-api:1.7.25'
+        compile 'org.slf4j:jcl-over-slf4j:1.7.25'
+        compile 'org.slf4j:log4j-over-slf4j:1.7.25'
+        compile 'org.slf4j:jul-to-slf4j:1.7.25'
+        compile group: 'org.codehaus.janino', name: 'janino', version: '3.0.6' // for logback condition
+
+        // test
+        testCompile('junit:junit:4.12') {
+            exclude group: 'org.hamcrest'
+        }
+        testCompile('org.mockito:mockito-core:1.10.19') {
+            exclude group: 'org.hamcrest'
+        }
+        testCompile 'org.hamcrest:hamcrest-all:1.3'
+    }
+}
+

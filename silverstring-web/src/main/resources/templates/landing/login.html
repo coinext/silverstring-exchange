@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+        <meta name="author" content="Coderthemes">
+
+        <link rel="shortcut icon" href="assets/dashboard/images/favicon_1.ico">
+
+        <title>Coinext</title>
+
+        <link href="assets/dashboard/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/core.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/components.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/pages.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/menu.css" rel="stylesheet" type="text/css">
+        <link href="assets/dashboard/css/responsive.css" rel="stylesheet" type="text/css">
+
+        <script src="assets/dashboard/js/modernizr.min.js"></script>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    <body>
+        <div class="wrapper-page">
+            <input id="msg" name="msg" type="hidden" th:value="${msg}">
+            <div class="text-center">
+                <a href="/" class="logo logo-lg"><i class="md md-equalizer"></i> <span>Coinext</span> </a>
+            </div>
+
+            <form class="form-horizontal m-t-20" action="/j_spring_security_check" method="post">
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input id="email" name="email" class="form-control" type="email" required="" placeholder="Email">
+                        <i class="md md-email form-control-feedback l-h-34"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input id="pwd" name="pwd" class="form-control" type="password" required="" placeholder="Password">
+                        <i class="md md-vpn-key form-control-feedback l-h-34"></i>
+                    </div>
+                </div>
+
+                <input id="fingerprint" name="fingerprint" class="form-control" type="hidden" required="">
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="checkbox checkbox-primary">
+                            <input id="checkbox-signup" type="checkbox">
+                            <label for="checkbox-signup">
+                                아이디 기억하기
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group text-right m-t-20">
+                    <div class="col-xs-12">
+                        <button id="loginBtnId" class="btn btn-primary btn-custom w-md waves-effect waves-light" type="submit">로그인하기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group m-t-30">
+                    <div class="col-sm-7">
+                        <a href="pages-recoverpw.html" class="text-muted"><i class="fa fa-lock m-r-5"></i> 비밀번호를 잊어버리셨나요?</a>
+                    </div>
+                    <div class="col-sm-5 text-right">
+                        <a href="/regist" class="text-muted">회원가입하기</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        
+    	<script>
+            var resizefunc = [];
+        </script>
+
+        <!-- Main  -->
+        <script src="assets/dashboard/js/jquery.min.js"></script>
+        <script src="assets/dashboard/js/bootstrap.min.js"></script>
+        <script src="assets/dashboard/js/detect.js"></script>
+        <script src="assets/dashboard/js/fastclick.js"></script>
+        <script src="assets/dashboard/js/jquery.slimscroll.js"></script>
+        <script src="assets/dashboard/js/jquery.blockUI.js"></script>
+        <script src="assets/dashboard/js/waves.js"></script>
+        <script src="assets/dashboard/js/wow.min.js"></script>
+        <script src="assets/dashboard/js/jquery.nicescroll.js"></script>
+        <script src="assets/dashboard/js/jquery.scrollTo.min.js"></script>
+        <script src="assets/dashboard/js/notify.min.js"></script>
+        <script src="assets/dashboard/js/notify-metro.js"></script>
+
+        <!-- Custom main Js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ClientJS/0.1.11/client.min.js"></script>
+        <script src="assets/dashboard/js/jquery.core.js"></script>
+        <script src="assets/dashboard/js/jquery.app.js"></script>
+        <script src="js/common/utils.js?dummy=2"></script>
+        <script src="js/lib/form-to-obj.min.js?dummy=1"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                //fingerprint setup.
+                var client = new ClientJS();
+                var fingerprint = client.getFingerprint();
+                $("#fingerprint").val(fingerprint);
+
+                //error popup
+                var msg = $("#msg").val();
+                if (msg == "none") {
+                } else {
+                    utils.showErrorAlert("로그인이 실패하였습니다.<br> 아이디/패스워드를 잘못입력하였거나, 디바이스허용되지않은 브라우저에서 로그인하셨습니다.");
+                }
+
+                $("#loginBtnId").click(function () {
+                    var formData = formToObj(document.querySelector('form'));
+
+                    if (utils.isEmpty(formData.email)) {
+                        utils.showErrorAlert("Email을 정확히 입력해주세요");
+                        return false;
+                    }
+
+                    if (!utils.validateEmail(formData.email)) {
+                        utils.showErrorAlert("Email형식에 맞지않습니다.");
+                        return false;
+                    }
+
+                    if (utils.isEmpty(formData.pwd) || formData.pwd.length < 8) {
+                        utils.showErrorAlert("Password을 정확히 입력해주세요");
+                        return false;
+                    }
+
+                    return true;
+                });
+            });
+        </script>
+	</body>
+</html>
