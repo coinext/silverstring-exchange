@@ -1,0 +1,8 @@
+!gradle-wrapper.jar
+**/build/
+*.iws
+*.iml
+.gradle
+.idea/
+/out/
+gradle-app.setting
