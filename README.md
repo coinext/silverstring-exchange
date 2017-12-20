@@ -3,7 +3,7 @@ Welcome to Coinext (Silverstring-Exchange)
 
 오픈소스 가상화폐 거래소 Coinext (부제 : Silverstring-Exchange)
 
-* 만든이 : Coinext2017@gmail.com (닉네임 : 나사못도 살포시)
+* 만든이 : Coinest2017@gmail.com (닉네임 : 나사못도 살포시)
 
 * 언어 : Java 1.8
 
