@@ -7,8 +7,6 @@ Welcome to Coinext (Silverstring-Exchange)
 
 * 언어 : Java 1.8
 
-* 개발 기간 : 30일
-
 * 스킬 : spring boot, redis, rabbitmq, mysql, jpa, websocket, jquery, bootstrap, ipfs, clientjs
 
 * 사용 솔류션 : rabbitmq, redis, mysql, google mail
