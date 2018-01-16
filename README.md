@@ -23,13 +23,6 @@ Welcome to Coinext (Silverstring-Exchange)
 
 * 구동 방법 : rabbitmq, redis, mysql 설치하시고,application.properties쪽에 설정정보 채워서 구동하면됩니다. 아래쪽에 DB스키마를 참고해주세요. 
 
-* **기부금 주소 :** 
-<pre><code>
-비트코인 주소: 3AFrwPj7pxxxDgU47sug9oRzeTqWiwtipU
-
-이더리움 주소: 0xca035554acc226728d9fcf21766e7ecc89fe8108
-</code></pre>
-
 <br /> 
 <br /> 
 <pre><code>
