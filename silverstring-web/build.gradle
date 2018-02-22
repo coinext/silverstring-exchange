@@ -6,6 +6,19 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'findbugs'
 apply from: "../build-apidoc.gradle"
 apply plugin: 'idea'
+apply plugin: 'docker'
+
+task buildDocker(type: Docker, dependsOn: build) {
+    push = false
+    applicationName = jar.baseName
+    dockerfile = file('docker/Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
+}
 
 idea {
     module {
@@ -21,6 +34,7 @@ buildscript {
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
         classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+        classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
 

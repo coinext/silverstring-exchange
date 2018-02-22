@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: silverstring-rabbitmq
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_VHOST=/silverstring
+  redis:
+    image: redis
+    container_name: silverstring-redis
+  db:
+    image: mysql
+    container_name: silverstring-mysql
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=silverstring
+      - MYSQL_USER=silverstring
+      - MYSQL_PASSWORD=silverstring_pw
+  web:
+    image: com.silverstring/silverstring-web:1.0-SNAPSHOT
+    container_name: silverstring-web
+    ports:
+      - '8080:8080'
+    links:
+      - db
+      - rabbitmq
+      - redis
+    depends_on:
+      - db
+      - rabbitmq
+      - redis
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"

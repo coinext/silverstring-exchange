@@ -1,13 +1,11 @@
 package io.silverstring.web;
 
-import it.ozimov.springboot.mail.configuration.EnableEmailTools;
-import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.core.Queue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -27,6 +25,30 @@ import java.nio.charset.Charset;
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @Bean
+    @Profile("docker")
+    Queue queueDeposit() {
+        return new Queue("deposit_transactions", false);
+    }
+
+    @Bean
+    @Profile("docker")
+    Queue queueWithdrawal() {
+        return new Queue("withdrawal_transactions", false);
+    }
+
+    @Bean
+    @Profile("docker")
+    Queue queueWebsocket() {
+        return new Queue("websock_message", false);
+    }
+
+    @Bean
+    @Profile("docker")
+    Queue queueEmail() {
+        return new Queue("email_confirm", false);
     }
 
     @Bean

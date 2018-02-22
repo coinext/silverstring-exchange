@@ -50,9 +50,17 @@ FT쪽은 제가 실력이 많이 모자라서, 꾸역꾸역 jqury로 만들어�
 </code></pre>
 <br /> 
 
+#### Docker compose를 이용한 구동
+* https://docs.docker.com/
+* https://docs.docker.com/compose/
+```
+$ gradle clean buildDocker
+$ docker-compose -f silverstring-web/docker/docker-compose.yml up
+```
+
 > DB 스키마
 
-
+```
 CREATE TABLE action_log
 (
     id BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -405,7 +413,7 @@ CREATE TABLE wallet
 );
 CREATE INDEX wallet_coin_name_fk ON wallet (coin_name);
 
-
+```
 
 
 

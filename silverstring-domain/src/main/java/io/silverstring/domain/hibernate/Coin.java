@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 public class Coin {
 
     @Id
-    @GeneratedValue
     @Enumerated(EnumType.STRING)
     private CoinEnum name;
 
