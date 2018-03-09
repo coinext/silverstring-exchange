@@ -45,7 +45,7 @@
                         <div class="tab-content br-n pn">
                             <div th:each="info : ${walletInfos.infos}" th:id="'deposit-nav-content-' + ${info.coin.name}" class="tab-pane" >
                                 <div class="row">
-                                    <block th:unless="${info.wallet.address} == null" >
+                                    <block th:unless="${info.wallet} == null" >
                                         <div class="col-md-1">
                                             <img th:src="'https://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=' + ${info.wallet.address}" class="img-responsive thumbnail m-r-15">
                                         </div>
@@ -58,11 +58,11 @@
                                         <br/>
                                         <p>
                                             회원님의 <span style="color:orange" th:text="${info.coin.hanName}"></span> 입금 주소 :<br/>
-                                        <h2 style="color:orange" th:if="${info.wallet.address} == null">
+                                        <h2 style="color:orange" th:if="${info.wallet} == null">
                                             <button th:onclick="'createWallet(' + '\'' + ${info.coin.name} + '\')'" class="btn btn-danger" th:text = "${info.coin.hanName} + ' 입금지갑주소를 생성합니다.'"></button>
                                         </h2>
-                                        <h3 style="color:orange" th:unless="${info.wallet.address} == null" th:text="${info.wallet.address} + ${info.wallet.bankName == null ? '' : ' *은행명 : ' + info.wallet.bankName} + ${info.wallet.bankName == null ? '' : ' *수취인명 : ' + info.wallet.recvCorpNm}">
-                                        </h3>
+                                        <!--<h3 style="color:orange" th:unless="${info.wallet} != null" th:text="${info.wallet} + ${info.wallet == null ? '' : ' *은행명 : ' + info.wallet} + ${info.wallet == null ? '' : ' *수취인명 : ' + info.wallet}">-->
+                                        <!--</h3>-->
                                         </p>
                                         <br/>
                                         <p>

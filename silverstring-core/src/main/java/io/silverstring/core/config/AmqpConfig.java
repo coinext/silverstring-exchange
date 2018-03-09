@@ -3,6 +3,7 @@ package io.silverstring.core.config;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
@@ -62,5 +63,28 @@ public class AmqpConfig implements RabbitListenerConfigurer {
         factory.setConcurrentConsumers(3);
         factory.setMaxConcurrentConsumers(10);
         return factory;
+    }
+
+    /*
+    todo Queue 이름을 프로퍼티로 분리해야함
+     */
+    @Bean
+    public Queue depositTransactions() {
+        return new Queue("deposit_transactions");
+    }
+
+    @Bean
+    public Queue emailConfirm() {
+        return new Queue("email_confirm");
+    }
+
+    @Bean
+    public Queue withdrawalTransactions() {
+        return new Queue("withdrawal_transactions");
+    }
+
+    @Bean
+    public Queue websockMessage() {
+        return new Queue("websock_message");
     }
 }
