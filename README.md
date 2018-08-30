@@ -19,6 +19,12 @@ Welcome to Coinext (Silverstring-Exchange)
 
 * 구동 방법 : rabbitmq, redis, mysql 설치하시고,application.properties쪽에 설정정보 채워서 구동하면됩니다. 아래쪽에 DB스키마를 참고해주세요. 
 
+* 로그 디렉토리 : 루트 디렉토리에 /data/logs 디렉토리를 생성하고(sudo mkdir /data && sudo mkdir /data/logs) logs에 읽기, 쓰기권한을 준다.(sudo chmod 777 /data/logs)
+
+* 3가지 웹을 구동할 수 있는데 관리자, 트레이딩봇(?), 거래소가 있다. 각 각 따로 빌드된 스프링 부트를 실행해야한다.
+
+* application.propertie 와 application-local.properties에 기본적인 로컬 셋팅이 되어있으니 참고
+
 <br /> 
 <br /> 
 <pre><code>

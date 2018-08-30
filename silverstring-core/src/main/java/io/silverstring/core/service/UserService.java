@@ -196,6 +196,9 @@ public class UserService {
         }
 
         //email send publishing.
+        /*
+        todo 컨펌 이메일을 보내는 로직이 없는듯 하다. UmsService 로직을 사용하면 될 듯
+         */
         EmailConfirm bindEmailConfirm = new EmailConfirm();
         bindEmailConfirm.setHashEmail(emailConfirm.getHashEmail());
         bindEmailConfirm.setCode(emailConfirm.getCode());
