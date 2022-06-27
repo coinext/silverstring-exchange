@@ -4,6 +4,8 @@ Welcome to Coinext (Silverstring-Exchange)
 https://cryptosherlock.me/
 블록체인 지갑 입출금 모니터링 서비스
 
+[프로젝트 소개] 블록체인 지갑 입출금 모니터링 서비스를 소개합니다! https://cryptosherlock.me/ BTC, ETH, ERC20 지갑의 입출금 트랙잭션을 실시간으로 감시하여, webhook이나 telegram으로 피딩을 해주는 서비스입니다. 개인적으로, 거래소를 만들기위한 입출금 기능을 위해서 블록 스캔 엔진을 만든건데, 해당 엔진으로 서비스를 만들어도 되겠다 싶어서, 만들어봤습니다.
+
 
 오픈소스 가상화폐 거래소 Coinext (부제 : Silverstring-Exchange)
 
